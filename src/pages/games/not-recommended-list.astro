@@ -18,6 +18,7 @@ import Layout from '../../layouts/Layout.astro';
     .game-table tr:last-child td{border-bottom:none}
     .fps-low{font-weight:700;color:#dc2626}
     .note{font-size:12px;color:var(--muted)}
+    .source-badge{font-size:11px;padding:3px 10px}
   </style>
   
     <section class="page-header">
@@ -36,32 +37,51 @@ import Layout from '../../layouts/Layout.astro';
               <th>Game</th>
               <th>Issue</th>
               <th>Why it fails</th>
+              <th>Source</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Starfield</td>
+              <td><strong>Starfield</strong></td>
               <td><span class="fps-low">Unplayable</span></td>
               <td class="note">DX12 and heavy CPU/GPU demands exceed current mobile hardware.</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
             </tr>
             <tr>
-              <td>Baldur's Gate 3</td>
+              <td><strong>Baldur's Gate 3</strong></td>
               <td><span class="fps-low">Unplayable / crashes</span></td>
               <td class="note">Vulkan/DX11 compatibility issues and very high RAM usage.</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
             </tr>
             <tr>
-              <td>Hogwarts Legacy</td>
+              <td><strong>Hogwarts Legacy</strong></td>
               <td><span class="fps-low">Crashes on launch</span></td>
               <td class="note">DX12 unsupported or unstable on current DroidDeck builds.</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
             </tr>
             <tr>
-              <td>Forza Horizon 5</td>
+              <td><strong>Forza Horizon 5</strong></td>
               <td><span class="fps-low">Crashes / black screen</span></td>
               <td class="note">Anti-cheat and DX12 issues prevent launch.</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
+            </tr>
+            <tr>
+              <td><strong>Cyberpunk 2077</strong></td>
+              <td><span class="fps-low">Crashes / 10–15 FPS</span></td>
+              <td class="note">Extremely heavy GPU/RAM requirements and DX12 issues.</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
+            </tr>
+            <tr>
+              <td><strong>Alan Wake 2</strong></td>
+              <td><span class="fps-low">Crashes on launch</span></td>
+              <td class="note">Mesh shaders and DX12 features not supported on Adreno.</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
             </tr>
           </tbody>
         </table>
       </div>
+
+      <p class="note" style="margin-top:20px"><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span> reports only. If a future DroidDeck update fixes one of these games, please <a href="/submit-report/">submit a report</a> so we can move it to the playable list.</p>
     </section>
   
   

@@ -192,6 +192,17 @@ figcaption{font-size:11px;color:#8592a0;margin-top:9px}
 .close-image{position:absolute;right:10px;top:0;font-size:29px;background:transparent;color:white;border:0;width:40px;height:40px}
 .image-dialog>p{font-size:11px;text-align:center;margin:10px 0 0}
 
+/* Source / status badges */
+.source-badge,.status-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;line-height:1.4}
+.source-verified{background:rgba(22,163,74,.1);color:#16a34a}
+.source-community{background:rgba(26,159,255,.1);color:#147cb9}
+.source-testing{background:rgba(217,119,6,.1);color:#d97706}
+.source-untested{background:rgba(99,113,131,.1);color:#637183}
+.rating-stars{color:#f59e0b;display:inline-flex;gap:2px;font-size:14px}
+.rating-stars .empty{color:#d1d5db}
+.page-meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:14px 0 20px}
+.page-meta .source-badge,.page-meta .status-badge{margin:0}
+
 /* Responsive */
 @media(min-width:1500px){
   .hero-intro{padding-top:8px;padding-bottom:8px}

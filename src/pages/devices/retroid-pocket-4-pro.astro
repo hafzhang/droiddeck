@@ -1,0 +1,149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Retroid Pocket 4 Pro DroidDeck Test Report — DroidDeck Guide"
+  description="DroidDeck compatibility report for Retroid Pocket 4 Pro. Setup tips, recommended settings, known bugs, and real game performance on Dimensity 1100."
+  page="devices"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px;display:grid;grid-template-columns:1fr 300px;gap:50px;align-items:start}
+    .specs{background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px;position:sticky;top:100px}
+    .specs h3{font-size:16px;margin-bottom:16px}
+    .specs dl{font-size:13px;margin:0}
+    .specs dt{color:var(--muted);margin-top:12px}
+    .specs dd{margin:4px 0 0;font-weight:700;color:#203a52}
+    .verdict{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:20px;margin-bottom:28px}
+    .verdict h3{color:#c2410c;font-size:16px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+    .verdict p{font-size:13px;color:#7c2d12;margin:0;line-height:1.7}
+    .report-section{margin-bottom:40px}
+    .report-section h2{font-size:24px;margin-bottom:16px}
+    .report-section p{font-size:14px;color:var(--muted);line-height:1.9}
+    .settings-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:13px;margin-top:16px}
+    .settings-table th,.settings-table td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .settings-table th{background:#f4f7fa;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+    .game-list{display:grid;gap:12px}
+    .game-item{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 18px}
+    .game-item h4{font-size:14px;margin:0}
+    .game-item .fps{font-size:12px;font-weight:700;color:#16a34a;background:#f0fdf4;padding:4px 10px;border-radius:999px}
+    .game-item .fps-mid{color:#d97706;background:#fffbeb}
+    .game-item .fps-low{color:#dc2626;background:#fef2f2}
+    .issue-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:16px;margin-top:16px}
+    .issue-box h4{color:#c2410c;font-size:14px;margin-bottom:8px}
+    .issue-box p{font-size:13px;color:#7c2d12;margin:0;line-height:1.7}
+    .source-badge{font-size:11px;padding:3px 10px}
+    @media(max-width:900px){
+      .page-content{display:block}
+      .specs{position:static;margin-bottom:30px}
+    }
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> Device Report</div>
+      <h1>Retroid Pocket 4 Pro</h1>
+      <p>Dimensity 1100 Android handheld · Mali-G77 MC9 · 8 GB RAM · Android 11+</p>
+      <div class="page-meta">
+        <span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community Report</span>
+        <span class="rating-stars" aria-label="Compatibility rating: 1.5 out of 5"><i class="ri-star-fill" aria-hidden="true"></i><i class="ri-star-half-fill" aria-hidden="true"></i><i class="ri-star-line" aria-hidden="true"></i><i class="ri-star-line" aria-hidden="true"></i><i class="ri-star-line" aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="report-main">
+      <div class="verdict">
+        <h3><i class="ri-close-circle-line" aria-hidden="true"></i> Verdict: Not Recommended</h3>
+        <p>The Retroid Pocket 4 Pro uses a MediaTek Dimensity 1100 with Mali-G77 graphics. DroidDeck officially targets Adreno GPUs, and Mali compatibility is poor. Most users report crashes, black screens, or failure to launch the Steam client.</p>
+      </div>
+
+      <div class="report-section">
+        <h2>Recommended settings</h2>
+        <p>There is no reliable settings baseline for Mali devices yet. If you still want to experiment, keep expectations very low.</p>
+        <table class="settings-table">
+          <thead>
+            <tr>
+              <th>Setting</th>
+              <th>Recommended value</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Resolution</td>
+              <td>720p or lower</td>
+              <td>Only relevant if you can get a game to launch.</td>
+            </tr>
+            <tr>
+              <td>Renderer</td>
+              <td>Try Vulkan, then DX11</td>
+              <td>Mali behavior varies by DroidDeck build.</td>
+            </tr>
+            <tr>
+              <td>FSR</td>
+              <td>Off</td>
+              <td>Save overhead until basic stability is confirmed.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="report-section">
+        <h2>Sample game performance</h2>
+        <p>Very few community reports show playable results on Mali-G77. The table below reflects the most common outcomes.</p>
+        <div class="game-list">
+          <div class="game-item">
+            <h4>Steam client</h4>
+            <span class="fps fps-low">Crashes / black screen</span>
+          </div>
+          <div class="game-item">
+            <h4>Hollow Knight</h4>
+            <span class="fps fps-mid">Launches, unstable</span>
+          </div>
+          <div class="game-item">
+            <h4>Stardew Valley</h4>
+            <span class="fps fps-mid">Launches, minor glitches</span>
+          </div>
+          <div class="game-item">
+            <h4>Hades</h4>
+            <span class="fps fps-low">Crashes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-section">
+        <h2>Known issues</h2>
+        <div class="issue-box">
+          <h4>Mali GPU not officially supported</h4>
+          <p>DroidDeck's compatibility layer is optimized for Adreno. Mali drivers often fail during initialization.</p>
+        </div>
+        <div class="issue-box">
+          <h4>Steam UI rendering problems</h4>
+          <p>Even when the client opens, Big Picture mode may show black or corrupted textures.</p>
+        </div>
+      </div>
+    </div>
+
+    <aside class="specs">
+      <h3>Device specs</h3>
+      <dl>
+        <dt>SoC</dt>
+        <dd>MediaTek Dimensity 1100</dd>
+        <dt>GPU</dt>
+        <dd>Mali-G77 MC9</dd>
+        <dt>RAM</dt>
+        <dd>8 GB LPDDR4X</dd>
+        <dt>Display</dt>
+        <dd>4.7" 750×1334 IPS</dd>
+        <dt>Battery</dt>
+        <dd>4500 mAh</dd>
+        <dt>Android</dt>
+        <dd>11+</dd>
+      </dl>
+    </aside>
+  </section>
+</Layout>

@@ -19,6 +19,7 @@ import Layout from '../../layouts/Layout.astro';
     .fps{font-weight:700;color:#16a34a}
     .note{font-size:12px;color:var(--muted)}
     .badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:#f0fdf4;color:#16a34a}
+    .source-badge{font-size:11px;padding:3px 10px}
   </style>
   
     <section class="page-header">
@@ -35,53 +36,88 @@ import Layout from '../../layouts/Layout.astro';
           <thead>
             <tr>
               <th>Game</th>
+              <th>Category</th>
               <th>Performance</th>
               <th>Recommended settings</th>
-              <th>Notes</th>
+              <th>Source</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Hades</td>
+              <td><strong>Hades</strong></td>
+              <td>Action roguelike</td>
               <td><span class="fps">60 FPS</span></td>
               <td>1080p, High</td>
-              <td class="note">Runs great on Adreno 740. Some stutter during first shader compile.</td>
+              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
             </tr>
             <tr>
-              <td>Hollow Knight</td>
+              <td><strong>Hollow Knight</strong></td>
+              <td>Metroidvania</td>
               <td><span class="fps">60 FPS</span></td>
               <td>1080p, Max</td>
-              <td class="note">Very light; even Adreno 650 can hold 60 FPS.</td>
+              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
             </tr>
             <tr>
-              <td>Celeste</td>
+              <td><strong>Celeste</strong></td>
+              <td>Platformer</td>
               <td><span class="fps">60 FPS</span></td>
               <td>1080p, Max</td>
-              <td class="note">Perfect for quick sessions on phones.</td>
+              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
             </tr>
             <tr>
-              <td>Dead Cells</td>
+              <td><strong>Dead Cells</strong></td>
+              <td>Action roguelike</td>
               <td><span class="fps">60 FPS</span></td>
               <td>1080p, High</td>
-              <td class="note">Occasional hitches when loading new biomes.</td>
+              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
             </tr>
             <tr>
-              <td>Stardew Valley</td>
+              <td><strong>Stardew Valley</strong></td>
+              <td>Simulation / RPG</td>
               <td><span class="fps">60 FPS</span></td>
               <td>1080p, Max</td>
-              <td class="note">Native controller support is excellent.</td>
+              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
             </tr>
             <tr>
-              <td>Shovel Knight</td>
+              <td><strong>Shovel Knight</strong></td>
+              <td>Retro platformer</td>
               <td><span class="fps">60 FPS</span></td>
               <td>1080p, Max</td>
-              <td class="note">Retro-style, virtually no GPU load.</td>
+              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
+            </tr>
+            <tr>
+              <td><strong>Hades II</strong></td>
+              <td>Action roguelike</td>
+              <td><span class="fps">50–60 FPS</span></td>
+              <td>720p–1080p, Medium</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
+            </tr>
+            <tr>
+              <td><strong>Ori and the Will of the Wisps</strong></td>
+              <td>Platformer</td>
+              <td><span class="fps">60 FPS</span></td>
+              <td>720p, High</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
+            </tr>
+            <tr>
+              <td><strong>Slay the Spire</strong></td>
+              <td>Card roguelike</td>
+              <td><span class="fps">60 FPS</span></td>
+              <td>1080p, Max</td>
+              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
+            </tr>
+            <tr>
+              <td><strong>Enter the Gungeon</strong></td>
+              <td>Bullet hell</td>
+              <td><span class="fps">60 FPS</span></td>
+              <td>1080p, Max</td>
+              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <p class="note" style="margin-top:20px"><span class="badge">Verified</span> Results are community-reported on Adreno 740 devices. Your experience may vary with DroidDeck updates and game patches.</p>
+      <p class="note" style="margin-top:20px"><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span> entries were tested by our team on Adreno 740 devices. <span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span> entries come from user reports. Results may vary with DroidDeck updates and game patches.</p>
     </section>
   
   

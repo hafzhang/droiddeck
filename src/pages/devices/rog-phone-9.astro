@@ -1,0 +1,154 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="ROG Phone 9 DroidDeck Test Report — DroidDeck Guide"
+  description="DroidDeck compatibility report for ASUS ROG Phone 9. Setup tips, recommended settings, known bugs, and real game performance on Snapdragon 8 Elite."
+  page="devices"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px;display:grid;grid-template-columns:1fr 300px;gap:50px;align-items:start}
+    .specs{background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px;position:sticky;top:100px}
+    .specs h3{font-size:16px;margin-bottom:16px}
+    .specs dl{font-size:13px;margin:0}
+    .specs dt{color:var(--muted);margin-top:12px}
+    .specs dd{margin:4px 0 0;font-weight:700;color:#203a52}
+    .verdict{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:20px;margin-bottom:28px}
+    .verdict h3{color:#16a34a;font-size:16px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+    .verdict p{font-size:13px;color:#166534;margin:0;line-height:1.7}
+    .report-section{margin-bottom:40px}
+    .report-section h2{font-size:24px;margin-bottom:16px}
+    .report-section p{font-size:14px;color:var(--muted);line-height:1.9}
+    .settings-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:13px;margin-top:16px}
+    .settings-table th,.settings-table td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .settings-table th{background:#f4f7fa;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+    .game-list{display:grid;gap:12px}
+    .game-item{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 18px}
+    .game-item h4{font-size:14px;margin:0}
+    .game-item .fps{font-size:12px;font-weight:700;color:#16a34a;background:#f0fdf4;padding:4px 10px;border-radius:999px}
+    .game-item .fps-mid{color:#d97706;background:#fffbeb}
+    .game-item .fps-low{color:#dc2626;background:#fef2f2}
+    .issue-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:16px;margin-top:16px}
+    .issue-box h4{color:#c2410c;font-size:14px;margin-bottom:8px}
+    .issue-box p{font-size:13px;color:#7c2d12;margin:0;line-height:1.7}
+    .source-badge{font-size:11px;padding:3px 10px}
+    @media(max-width:900px){
+      .page-content{display:block}
+      .specs{position:static;margin-bottom:30px}
+    }
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> Device Report</div>
+      <h1>ROG Phone 9</h1>
+      <p>Snapdragon 8 Elite gaming phone · Adreno 830 · 16/24 GB RAM · Android 15</p>
+      <div class="page-meta">
+        <span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community Report</span>
+        <span class="rating-stars" aria-label="Compatibility rating: 4.5 out of 5"><i class="ri-star-fill" aria-hidden="true"></i><i class="ri-star-fill" aria-hidden="true"></i><i class="ri-star-fill" aria-hidden="true"></i><i class="ri-star-fill" aria-hidden="true"></i><i class="ri-star-half-fill" aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="report-main">
+      <div class="verdict">
+        <h3><i class="ri-checkbox-circle-line" aria-hidden="true"></i> Verdict: Highly Recommended</h3>
+        <p>The ROG Phone 9 is currently the fastest phone for DroidDeck. Snapdragon 8 Elite's Adreno 830 is a big leap over Adreno 750, and the vapor-chamber cooling keeps sustained performance high. The main downsides are price and the need for a clip-on controller or dock.</p>
+      </div>
+
+      <div class="report-section">
+        <h2>Recommended settings</h2>
+        <p>With this level of hardware you can push higher resolutions than most handhelds, but active cooling still matters for long sessions.</p>
+        <table class="settings-table">
+          <thead>
+            <tr>
+              <th>Setting</th>
+              <th>Recommended value</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Resolution</td>
+              <td>720p – 1080p</td>
+              <td>1080p is viable for many AAA games; 720p for steady 30+ FPS.</td>
+            </tr>
+            <tr>
+              <td>FSR</td>
+              <td>Quality or Balanced</td>
+              <td>Performance headroom lets you prioritize image quality.</td>
+            </tr>
+            <tr>
+              <td>Performance mode</td>
+              <td>X Mode enabled</td>
+              <td>Unlocks sustained clocks; use with AeroActive Cooler for best results.</td>
+            </tr>
+            <tr>
+              <td>Controller</td>
+              <td>ROG Kunai 3 / clip-on pad</td>
+              <td>USB-C or Bluetooth controllers map cleanly as XInput.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="report-section">
+        <h2>Sample game performance</h2>
+        <p>Early community reports from Snapdragon 8 Elite devices. Results should improve as DroidDeck optimizes for the new GPU.</p>
+        <div class="game-list">
+          <div class="game-item">
+            <h4>Hades</h4>
+            <span class="fps">60 FPS @ 1080p Max</span>
+          </div>
+          <div class="game-item">
+            <h4>Resident Evil 4 (2023)</h4>
+            <span class="fps fps-mid">35–50 FPS @ 720p High + FSR</span>
+          </div>
+          <div class="game-item">
+            <h4>The Witcher 3</h4>
+            <span class="fps fps-mid">35–50 FPS @ 720p High + FSR</span>
+          </div>
+          <div class="game-item">
+            <h4>Grand Theft Auto V</h4>
+            <span class="fps fps-mid">45–60 FPS @ 1080p Normal</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-section">
+        <h2>Known issues</h2>
+        <div class="issue-box">
+          <h4>DroidDeck optimization still catching up</h4>
+          <p>Adreno 830 is new; some users see shader compilation issues or lower-than-expected FPS until DroidDeck updates ship targeted fixes.</p>
+        </div>
+        <div class="issue-box">
+          <h4>Thermal throttling without cooler</h4>
+          <p>Even with a vapor chamber, 30-minute AAA sessions can throttle in a case. Use X Mode plus the AeroActive Cooler for sustained performance.</p>
+        </div>
+      </div>
+    </div>
+
+    <aside class="specs">
+      <h3>Device specs</h3>
+      <dl>
+        <dt>SoC</dt>
+        <dd>Snapdragon 8 Elite</dd>
+        <dt>GPU</dt>
+        <dd>Adreno 830</dd>
+        <dt>RAM</dt>
+        <dd>16 / 24 GB LPDDR5X</dd>
+        <dt>Display</dt>
+        <dd>6.78" 1080×2400 185 Hz AMOLED</dd>
+        <dt>Battery</dt>
+        <dd>5800 mAh</dd>
+        <dt>Android</dt>
+        <dd>15</dd>
+      </dl>
+    </aside>
+  </section>
+</Layout>

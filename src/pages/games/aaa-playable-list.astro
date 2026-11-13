@@ -18,6 +18,7 @@ import Layout from '../../layouts/Layout.astro';
     .game-table tr:last-child td{border-bottom:none}
     .fps-mid{font-weight:700;color:#d97706}
     .note{font-size:12px;color:var(--muted)}
+    .source-badge{font-size:11px;padding:3px 10px}
   </style>
   
     <section class="page-header">
@@ -34,39 +35,74 @@ import Layout from '../../layouts/Layout.astro';
           <thead>
             <tr>
               <th>Game</th>
+              <th>Category</th>
               <th>Performance</th>
               <th>Settings</th>
-              <th>Notes</th>
+              <th>Source</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>The Witcher 3</td>
+              <td><strong>The Witcher 3</strong></td>
+              <td>Open-world RPG</td>
               <td><span class="fps-mid">30–40 FPS</span></td>
               <td>720p Low + FSR Quality</td>
-              <td class="note">Best on handhelds with active cooling. Cities drop FPS.</td>
+              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
             </tr>
             <tr>
-              <td>Grand Theft Auto V</td>
+              <td><strong>Grand Theft Auto V</strong></td>
+              <td>Open-world action</td>
               <td><span class="fps-mid">30–45 FPS</span></td>
               <td>720p Normal + FSR</td>
-              <td class="note">Older DX11 title; runs better than many newer games.</td>
+              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
             </tr>
             <tr>
-              <td>Dark Souls III</td>
+              <td><strong>Dark Souls III</strong></td>
+              <td>Action RPG</td>
               <td><span class="fps-mid">25–35 FPS</span></td>
               <td>720p Low + FSR Balanced</td>
-              <td class="note">Playable but demanding; keep settings minimal.</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
             </tr>
             <tr>
-              <td>Sekiro: Shadows Die Twice</td>
+              <td><strong>Sekiro: Shadows Die Twice</strong></td>
+              <td>Action adventure</td>
               <td><span class="fps-mid">25–35 FPS</span></td>
               <td>720p Low + FSR Performance</td>
-              <td class="note">Fast combat can feel sluggish below 30 FPS.</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
+            </tr>
+            <tr>
+              <td><strong>Red Dead Redemption 2</strong></td>
+              <td>Open-world action</td>
+              <td><span class="fps-mid">20–30 FPS</span></td>
+              <td>720p Low + FSR Performance</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
+            </tr>
+            <tr>
+              <td><strong>Elden Ring</strong></td>
+              <td>Action RPG</td>
+              <td><span class="fps-mid">20–30 FPS</span></td>
+              <td>720p Low + FSR Performance</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
+            </tr>
+            <tr>
+              <td><strong>Resident Evil 4 (2023)</strong></td>
+              <td>Survival horror</td>
+              <td><span class="fps-mid">30–45 FPS</span></td>
+              <td>720p Medium + FSR Balanced</td>
+              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
+            </tr>
+            <tr>
+              <td><strong>Devil May Cry 5</strong></td>
+              <td>Action</td>
+              <td><span class="fps-mid">30–40 FPS</span></td>
+              <td>720p Low + FSR Quality</td>
+              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
             </tr>
           </tbody>
         </table>
       </div>
+
+      <p class="note" style="margin-top:20px"><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span> entries were tested on Ayn Odin 2 / Snapdragon 8 Gen 2 devices. <span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span> entries are reported by users. Lock your expectations to 25–40 FPS for AAA games.</p>
     </section>
   
   

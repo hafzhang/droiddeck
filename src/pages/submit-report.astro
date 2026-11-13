@@ -1,0 +1,182 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Submit a Report — DroidDeck Guide"
+  description="Submit a DroidDeck device test or game compatibility report to help the community database grow."
+  page=""
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .report-grid{display:grid;grid-template-columns:1fr 360px;gap:50px;align-items:start}
+    .report-form{background:#fff;border:1px solid var(--line);border-radius:10px;padding:28px}
+    .form-group{margin-bottom:20px}
+    .form-group label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#203a52}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:6px;font-size:14px;font-family:inherit}
+    .form-group textarea{min-height:120px;resize:vertical}
+    .form-group small{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
+    .form-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .btn{display:inline-flex;justify-content:center;align-items:center;gap:10px;padding:12px 22px;border-radius:5px;font-size:14px;font-weight:650;line-height:1.6;transition:background .2s,transform .2s;border:0;cursor:pointer}
+    .btn:hover{transform:translateY(-2px)}
+    .primary{background:var(--blue);color:#041d31}
+    .primary:hover{background:#48b3ff}
+    .secondary{background:#f4f7fa;color:#203a52;border:1px solid var(--line)}
+    .sidebar{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:24px;position:sticky;top:100px}
+    .sidebar h3{font-size:16px;margin-bottom:14px}
+    .sidebar ul{padding-left:18px;font-size:13px;color:var(--muted);line-height:1.9}
+    .sidebar li{margin-bottom:8px}
+    .discord-box{background:#f0f7fc;border-radius:8px;padding:16px;margin-top:20px}
+    .discord-box h4{color:#147cb9;font-size:14px;margin-bottom:8px}
+    .discord-box p{font-size:13px;color:#203a52;margin:0;line-height:1.7}
+    .note-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:16px;margin-bottom:24px}
+    .note-box p{font-size:13px;color:#7c2d12;margin:0;line-height:1.7}
+    @media(max-width:900px){
+      .report-grid{display:block}
+      .sidebar{position:static;margin-top:30px}
+    }
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> Contribute</div>
+      <h1>Submit a compatibility report</h1>
+      <p>Your test results help others decide what to buy, what to play, and what settings to use. One detailed report is worth more than ten vague comments.</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="report-grid">
+      <div>
+        <div class="note-box">
+          <p><strong>This form does not store data on a server.</strong> When you click "Generate report", we build a formatted message you can paste into Discord, GitHub, or email.</p>
+        </div>
+
+        <form class="report-form" id="report-form">
+          <div class="form-group">
+            <label for="report-type">Report type</label>
+            <select id="report-type" name="report-type">
+              <option value="device">Device test report</option>
+              <option value="game">Game compatibility report</option>
+              <option value="issue">Bug / issue report</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="device">Device / phone model</label>
+            <input type="text" id="device" name="device" placeholder="e.g. Ayn Odin 2, Snapdragon 8 Gen 3">
+          </div>
+
+          <div class="form-group">
+            <label for="droiddeck-version">DroidDeck version</label>
+            <input type="text" id="droiddeck-version" name="droiddeck-version" placeholder="e.g. 1.2.0">
+            <small>The version number from DroidDeck settings.</small>
+          </div>
+
+          <div class="form-group" id="game-field">
+            <label for="game">Game title</label>
+            <input type="text" id="game" name="game" placeholder="e.g. Hades, The Witcher 3">
+          </div>
+
+          <div class="form-group">
+            <label for="settings">Settings used</label>
+            <input type="text" id="settings" name="settings" placeholder="e.g. 720p Low + FSR Quality">
+          </div>
+
+          <div class="form-group">
+            <label for="result">Result / performance</label>
+            <textarea id="result" name="result" placeholder="Describe what happened: FPS range, crashes, controller issues, audio problems, thermal throttling, etc."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="source">Data source</label>
+            <select id="source" name="source">
+              <option value="verified">I tested this myself</option>
+              <option value="community">I saw this reported by someone else</option>
+            </select>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary"><i class="ri-file-copy-line" aria-hidden="true"></i> Generate report</button>
+            <a class="btn secondary" href="https://github.com/Droid-Deck/DroidDeck" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i> Open GitHub</a>
+          </div>
+        </form>
+
+        <div class="report-output" id="report-output" style="display:none;margin-top:24px;background:#0b1018;color:#c6cfda;border-radius:10px;padding:24px">
+          <h3 style="color:white;margin-bottom:12px">Your formatted report</h3>
+          <pre id="report-text" style="white-space:pre-wrap;font-size:13px;line-height:1.8;margin:0"></pre>
+          <button type="button" class="btn primary" id="copy-report" style="margin-top:16px"><i class="ri-clipboard-line" aria-hidden="true"></i> Copy to clipboard</button>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <h3>What makes a good report</h3>
+        <ul>
+          <li><strong>Device name</strong> with SoC and GPU if you know it</li>
+          <li><strong>DroidDeck version</strong> from the app settings</li>
+          <li><strong>Game version / platform</strong> (Steam, GOG, etc.)</li>
+          <li><strong>Resolution and FSR preset</strong> you tested</li>
+          <li><strong>FPS range</strong> and where it drops</li>
+          <li><strong>Any crashes, audio, or controller issues</strong></li>
+          <li>Whether you <strong>tested it yourself</strong> or are passing along a report</li>
+        </ul>
+
+        <div class="discord-box">
+          <h4><i class="ri-discord-line" aria-hidden="true"></i> Discord</h4>
+          <p>Join the DroidDeck community Discord and paste your generated report in the #compatibility channel. No Discord? Email it or open a GitHub issue.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('report-form');
+    const output = document.getElementById('report-output');
+    const reportText = document.getElementById('report-text');
+    const copyBtn = document.getElementById('copy-report');
+    const reportType = document.getElementById('report-type');
+    const gameField = document.getElementById('game-field');
+
+    reportType.addEventListener('change', () => {
+      gameField.style.display = reportType.value === 'device' ? 'none' : 'block';
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      const lines = [
+        `**Report type:** ${data['report-type']}`,
+        `**Device:** ${data.device || 'Not specified'}`,
+        `**DroidDeck version:** ${data['droiddeck-version'] || 'Not specified'}`,
+      ];
+      if (data['report-type'] !== 'device') {
+        lines.push(`**Game:** ${data.game || 'Not specified'}`);
+      }
+      lines.push(
+        `**Settings:** ${data.settings || 'Not specified'}`,
+        `**Result:** ${data.result || 'Not specified'}`,
+        `**Source:** ${data.source === 'verified' ? 'Self-tested' : 'Community report'}`
+      );
+      const text = lines.join('\n');
+      reportText.textContent = text;
+      output.style.display = 'block';
+      output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(reportText.textContent);
+        copyBtn.innerHTML = '<i class="ri-check-line" aria-hidden="true"></i> Copied!';
+        setTimeout(() => {
+          copyBtn.innerHTML = '<i class="ri-clipboard-line" aria-hidden="true"></i> Copy to clipboard';
+        }, 2000);
+      } catch (err) {
+        reportText.focus();
+        reportText.select();
+      }
+    });
+  </script>
+</Layout>
