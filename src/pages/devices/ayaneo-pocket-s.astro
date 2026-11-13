@@ -1,0 +1,148 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Ayaneo Pocket S DroidDeck Test Report — DroidDeck Guide"
+  description="DroidDeck compatibility report for Ayaneo Pocket S. Setup tips, recommended settings, known bugs, and real game performance."
+  page="devices"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px;display:grid;grid-template-columns:1fr 300px;gap:50px;align-items:start}
+    .specs{background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px;position:sticky;top:100px}
+    .specs h3{font-size:16px;margin-bottom:16px}
+    .specs dl{font-size:13px;margin:0}
+    .specs dt{color:var(--muted);margin-top:12px}
+    .specs dd{margin:4px 0 0;font-weight:700;color:#203a52}
+    .verdict{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:20px;margin-bottom:28px}
+    .verdict h3{color:#16a34a;font-size:16px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+    .verdict p{font-size:13px;color:#166534;margin:0;line-height:1.7}
+    .report-section{margin-bottom:40px}
+    .report-section h2{font-size:24px;margin-bottom:16px}
+    .report-section p{font-size:14px;color:var(--muted);line-height:1.9}
+    .settings-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:13px;margin-top:16px}
+    .settings-table th,.settings-table td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .settings-table th{background:#f4f7fa;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+    .game-list{display:grid;gap:12px}
+    .game-item{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 18px}
+    .game-item h4{font-size:14px;margin:0}
+    .game-item .fps{font-size:12px;font-weight:700;color:#16a34a;background:#f0fdf4;padding:4px 10px;border-radius:999px}
+    .game-item .fps-mid{color:#d97706;background:#fffbeb}
+    .game-item .fps-low{color:#dc2626;background:#fef2f2}
+    .issue-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:16px;margin-top:16px}
+    .issue-box h4{color:#c2410c;font-size:14px;margin-bottom:8px}
+    .issue-box p{font-size:13px;color:#7c2d12;margin:0;line-height:1.7}
+    @media(max-width:900px){.page-content{display:block}.specs{position:static;margin-bottom:30px}}
+  </style>
+  
+    <section class="page-header">
+      <div class="wrap">
+        <div class="hero-label"><span></span> Device Report</div>
+        <h1>Ayaneo Pocket S</h1>
+        <p>Snapdragon G3x Gen 2 Android handheld · Adreno 740 · 16 GB RAM · Android 13</p>
+      </div>
+    </section>
+
+    <section class="page-content wrap">
+      <div class="report-main">
+        <div class="verdict">
+          <h3><i class="ri-checkbox-circle-line" aria-hidden="true"></i> Verdict: Recommended</h3>
+          <p>The Pocket S combines a premium 1440p OLED display with active cooling and generous RAM. It is one of the best handhelds for DroidDeck, though you will usually game at 720p–1080p and let the screen upscale.</p>
+        </div>
+
+        <div class="report-section">
+          <h2>Recommended settings</h2>
+          <table class="settings-table">
+            <thead>
+              <tr>
+                <th>Setting</th>
+                <th>Recommended value</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Resolution</td>
+                <td>720p – 1080p</td>
+                <td>The 1440p panel scales 1080p well; native 1440p is too heavy.</td>
+              </tr>
+              <tr>
+                <td>FSR</td>
+                <td>Quality or Balanced</td>
+                <td>Looks crisp on the OLED screen.</td>
+              </tr>
+              <tr>
+                <td>Frame generation</td>
+                <td>Optional for lighter titles</td>
+                <td>Use only when base FPS is already stable.</td>
+              </tr>
+              <tr>
+                <td>Controller</td>
+                <td>Built-in Hall sticks / Xbox layout</td>
+                <td>Excellent sticks; no drift issues reported so far.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="report-section">
+          <h2>Sample game performance</h2>
+          <div class="game-list">
+            <div class="game-item">
+              <h4>Hades</h4>
+              <span class="fps">60 FPS @ 1080p</span>
+            </div>
+            <div class="game-item">
+              <h4>Hollow Knight</h4>
+              <span class="fps">60 FPS @ 1080p</span>
+            </div>
+            <div class="game-item">
+              <h4>The Witcher 3</h4>
+              <span class="fps fps-mid">30–40 FPS @ 720p Low + FSR</span>
+            </div>
+            <div class="game-item">
+              <h4>Elden Ring</h4>
+              <span class="fps fps-low">20–28 FPS @ 720p Low</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-section">
+          <h2>Known issues</h2>
+          <div class="issue-box">
+            <h4>1440p native is too demanding</h4>
+            <p>Even with FSR, running games at the panel's native 2560×1440 pushes the Adreno 740 too hard. Render lower and let the screen upscale.</p>
+          </div>
+          <div class="issue-box">
+            <h4>Premium price, niche use case</h4>
+            <p>Performance is excellent, but you pay for build quality. For pure DroidDeck value, the Odin 2 is often the better choice.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="specs">
+        <h3>Device specs</h3>
+        <dl>
+          <dt>SoC</dt>
+          <dd>Snapdragon G3x Gen 2</dd>
+          <dt>GPU</dt>
+          <dd>Adreno 740</dd>
+          <dt>RAM</dt>
+          <dd>16 GB</dd>
+          <dt>Display</dt>
+          <dd>6" 1440p OLED</dd>
+          <dt>Battery</dt>
+          <dd>6000 mAh</dd>
+          <dt>Cooling</dt>
+          <dd>Active fan</dd>
+          <dt>DroidDeck status</dt>
+          <dd>Recommended</dd>
+        </dl>
+      </aside>
+    </section>
+  
+  
+</Layout>

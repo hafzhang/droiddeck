@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Troubleshooting — DroidDeck Guide"
+  description="DroidDeck error fixes and troubleshooting guides. Black screen, crashes, Steam login, controller, audio, and storage issues."
+  page="troubleshooting"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .issue-list{display:grid;gap:16px}
+    .issue-item{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px 24px;transition:border-color .2s}
+    .issue-item:hover{border-color:#b8d7f0}
+    .issue-icon{width:44px;height:44px;border-radius:50%;background:#f0f7fc;color:#147cb9;display:grid;place-items:center;font-size:20px}
+    .issue-item h3{font-size:16px;margin-bottom:4px}
+    .issue-item p{font-size:13px;color:var(--muted);margin:0;line-height:1.6}
+    .issue-item a{font-size:13px;font-weight:700;color:#147cb9;white-space:nowrap}
+    .severity{font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px}
+    .severity-high{background:rgba(220,38,38,.1);color:#dc2626}
+    .severity-medium{background:rgba(217,119,6,.1);color:#d97706}
+    .severity-low{background:rgba(22,163,74,.1);color:#16a34a}
+  </style>
+  
+    <section class="page-header">
+      <div class="wrap">
+        <div class="hero-label"><span></span> Troubleshooting</div>
+        <h1>Fix common DroidDeck issues</h1>
+        <p>Step-by-step guides for the errors users search for most. Each page covers symptoms, likely causes, and verified fixes.</p>
+      </div>
+    </section>
+
+    <section class="page-content wrap">
+      <div class="issue-list">
+        <article class="issue-item">
+          <div class="issue-icon"><i class="ri-eye-off-line" aria-hidden="true"></i></div>
+          <div>
+            <h3>Black screen on launch</h3>
+            <p>Steam or a game starts but the screen stays black. Often GPU/driver or display-backend related.</p>
+          </div>
+          <div style="text-align:right">
+            <span class="severity severity-high">High impact</span><br>
+            <a href="/troubleshooting/black-screen/">Fix it <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </article>
+
+        <article class="issue-item">
+          <div class="issue-icon"><i class="ri-restart-line" aria-hidden="true"></i></div>
+          <div>
+            <h3>Game crashes / force close</h3>
+            <p>Game exits during startup or gameplay. Usually compatibility, RAM, or thermal throttling.</p>
+          </div>
+          <div style="text-align:right">
+            <span class="severity severity-high">High impact</span><br>
+            <a href="/troubleshooting/game-crashes/">Fix it <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </article>
+
+        <article class="issue-item">
+          <div class="issue-icon"><i class="ri-steam-line" aria-hidden="true"></i></div>
+          <div>
+            <h3>Steam login failure</h3>
+            <p>Cannot log in, QR code not loading, or repeated authentication errors.</p>
+          </div>
+          <div style="text-align:right">
+            <span class="severity severity-medium">Medium impact</span><br>
+            <a href="/troubleshooting/steam-login-failed/">Fix it <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </article>
+
+        <article class="issue-item">
+          <div class="issue-icon"><i class="ri-hard-drive-3-line" aria-hidden="true"></i></div>
+          <div>
+            <h3>Insufficient disk space</h3>
+            <p>Environment setup or game install fails with storage errors. How much space you really need.</p>
+          </div>
+          <div style="text-align:right">
+            <span class="severity severity-medium">Medium impact</span><br>
+            <a href="/troubleshooting/disk-space-insufficient/">Fix it <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </article>
+
+        <article class="issue-item">
+          <div class="issue-icon"><i class="ri-gamepad-line" aria-hidden="true"></i></div>
+          <div>
+            <h3>Controller not detected / mapping issues</h3>
+            <p>Bluetooth or USB controller not recognized, or buttons mapped incorrectly.</p>
+          </div>
+          <div style="text-align:right">
+            <span class="severity severity-medium">Medium impact</span><br>
+            <a href="/troubleshooting/controller-not-detected/">Fix it <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </article>
+
+        <article class="issue-item">
+          <div class="issue-icon"><i class="ri-volume-mute-line" aria-hidden="true"></i></div>
+          <div>
+            <h3>Audio stuttering / no sound</h3>
+            <p>Sound cuts out, is delayed, or missing entirely. Audio backend and routing fixes.</p>
+          </div>
+          <div style="text-align:right">
+            <span class="severity severity-low">Low impact</span><br>
+            <a href="/troubleshooting/audio-issues/">Fix it <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </article>
+      </div>
+    </section>
+  
+  
+</Layout>

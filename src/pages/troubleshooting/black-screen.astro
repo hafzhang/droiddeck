@@ -1,0 +1,99 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Fix DroidDeck Black Screen on Launch — DroidDeck Guide"
+  description="Step-by-step fix for DroidDeck black screen on launch. Common causes and verified solutions."
+  page="troubleshooting"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:36px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px;max-width:820px}
+    .toc{background:#f4f7fa;border-radius:10px;padding:22px 26px;margin-bottom:36px}
+    .toc h3{font-size:14px;margin-bottom:12px}
+    .toc ul{margin:0;padding-left:18px;font-size:13px}
+    .toc li{margin:6px 0}
+    .fix-section{margin-bottom:42px}
+    .fix-section h2{font-size:24px;margin-bottom:14px}
+    .fix-section p{font-size:15px;color:var(--muted);line-height:1.9}
+    .fix-section ol{padding-left:22px;font-size:15px;color:#43576c;line-height:1.9}
+    .fix-section li{margin:10px 0}
+    .callout{padding:16px 20px;background:#f0fdf4;border-left:4px solid #16a34a;border-radius:0 8px 8px 0;margin:20px 0}
+    .callout.warning{background:#fffbeb;border-left-color:#d97706}
+    .callout p{margin:0;font-size:13px;color:#166534;line-height:1.7}
+    .callout.warning p{color:#92400e}
+    .tag-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .tag{font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;background:#f0f7fc;color:#147cb9}
+  </style>
+  
+    <section class="page-header">
+      <div class="wrap">
+        <div class="hero-label"><span></span> Troubleshooting</div>
+        <h1>Black screen on launch</h1>
+        <p>DroidDeck or a game starts, but the screen stays black or hangs on a loading screen.</p>
+        <div class="tag-list">
+          <span class="tag">GPU driver</span>
+          <span class="tag">Display backend</span>
+          <span class="tag">DirectX</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-content wrap">
+      <div class="toc">
+        <h3>On this page</h3>
+        <ul>
+          <li><a href="#symptoms">Symptoms</a></li>
+          <li><a href="#causes">Common causes</a></li>
+          <li><a href="#fixes">Step-by-step fixes</a></li>
+          <li><a href="#still-stuck">Still stuck?</a></li>
+        </ul>
+      </div>
+
+      <div class="fix-section" id="symptoms">
+        <h2>Symptoms</h2>
+        <ul>
+          <li>DroidDeck launches, but the Steam window or game window is completely black.</li>
+          <li>Audio plays, but there is no video.</li>
+          <li>The app freezes on a gray or black screen.</li>
+        </ul>
+      </div>
+
+      <div class="fix-section" id="causes">
+        <h2>Common causes</h2>
+        <p>Black screens are usually caused by one of three things: an incompatible GPU/display backend, a missing or incompatible DirectX version, or a resolution/refresh-rate mismatch on your device.</p>
+      </div>
+
+      <div class="fix-section" id="fixes">
+        <h2>Step-by-step fixes</h2>
+        <ol>
+          <li><strong>Check your GPU compatibility.</strong> DroidDeck officially supports Adreno 730 and newer. Adreno 650 devices may see black screens in DX12 or some DX11 titles. Mali and Tensor GPUs are not supported.</li>
+          <li><strong>Switch the graphics backend.</strong> In the game's launch options or DroidDeck settings, try forcing DX11 instead of DX12, or vice versa, depending on what the game defaults to.</li>
+          <li><strong>Lower the resolution.</strong> Set the game to 720p or lower. Some games fail to render at panel-native resolutions.</li>
+          <li><strong>Disable fullscreen optimizations.</strong> Run the game in windowed or borderless windowed mode if fullscreen causes a black screen.</li>
+          <li><strong>Verify Proton version.</strong> Try a different Proton version in the game's compatibility settings. Some titles work only with specific Proton builds.</li>
+          <li><strong>Clear shader cache.</strong> Delete the game's shader cache folder and let it rebuild on next launch.</li>
+        </ol>
+
+        <div class="callout warning">
+          <p><strong>Important:</strong> If only one game has a black screen, the issue is usually game-specific (DirectX/Proton). If the entire DroidDeck interface is black, check your device GPU and display backend first.</p>
+        </div>
+      </div>
+
+      <div class="fix-section" id="still-stuck">
+        <h2>Still stuck?</h2>
+        <p>If none of the above fixes work, collect the following and ask in the community:</p>
+        <ul>
+          <li>Device model and GPU</li>
+          <li>DroidDeck version</li>
+          <li>Game name and Proton version</li>
+          <li>Whether audio plays during the black screen</li>
+        </ul>
+      </div>
+    </section>
+  
+  
+</Layout>

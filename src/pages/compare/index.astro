@@ -1,0 +1,112 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Compare — DroidDeck Guide"
+  description="Compare DroidDeck with Winlator and Mobox. Architecture, performance, compatibility, and ease of use for Android PC gaming."
+  page="compare"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .compare-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+    .compare-table th,.compare-table td{padding:16px;border-bottom:1px solid var(--line);vertical-align:top}
+    .compare-table th{background:#f4f7fa;text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+    .compare-table td:first-child{font-weight:700;color:#203a52;width:22%}
+    .check{color:#16a34a;font-weight:700}
+    .cross{color:#dc2626;font-weight:700}
+    .partial{color:#d97706;font-weight:700}
+    .winner{background:#f0f7fc}
+    .recommendation{background:#0b1018;color:white;padding:40px;border-radius:10px;margin-top:40px}
+    .recommendation h2{color:white;margin-bottom:16px}
+    .recommendation p{color:#93a7ba;line-height:1.8}
+    .recommendation-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+    .rec-card{background:#172536;border:1px solid #ffffff15;border-radius:8px;padding:20px}
+    .rec-card h3{color:#6ac3ff;font-size:16px;margin-bottom:8px}
+    .rec-card p{font-size:13px;color:#aab8c9;margin:0;line-height:1.7}
+  </style>
+  
+    <section class="page-header">
+      <div class="wrap">
+        <div class="hero-label"><span></span> Compare</div>
+        <h1>DroidDeck vs the alternatives</h1>
+        <p>A practical comparison of the three most discussed ways to run PC games on Android. Choose the right tool for your library and comfort level.</p>
+      </div>
+    </section>
+
+    <section class="page-content wrap">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>DroidDeck</th>
+              <th>Winlator</th>
+              <th>MoboX</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Steam integration</td>
+              <td class="winner"><span class="check">✓ Native ARM64 Steam</span></td>
+              <td><span class="partial">~ Manual install</span></td>
+              <td><span class="partial">~ Manual install</span></td>
+            </tr>
+            <tr>
+              <td>Setup difficulty</td>
+              <td class="winner"><span class="check">Low</span></td>
+              <td><span class="partial">Medium</span></td>
+              <td><span class="cross">High</span></td>
+            </tr>
+            <tr>
+              <td>Controller mapping</td>
+              <td class="winner"><span class="check">Built-in</span></td>
+              <td><span class="partial">Built-in</span></td>
+              <td><span class="partial">Manual</span></td>
+            </tr>
+            <tr>
+              <td>Non-Steam games</td>
+              <td><span class="partial">Possible</span></td>
+              <td class="winner"><span class="check">Strong</span></td>
+              <td><span class="check">Strong</span></td>
+            </tr>
+            <tr>
+              <td>Linux desktop environment</td>
+              <td><span class="check">Optional</span></td>
+              <td><span class="cross">No</span></td>
+              <td class="winner"><span class="check">Full Termux DE</span></td>
+            </tr>
+            <tr>
+              <td>Best for</td>
+              <td class="winner">Steam-first portable play</td>
+              <td>Mixed Windows game library</td>
+              <td>Power users, Linux workflows</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="recommendation">
+        <h2>Which one should you choose?</h2>
+        <div class="recommendation-grid">
+          <div class="rec-card">
+            <h3>Pick DroidDeck if…</h3>
+            <p>You mainly play Steam games, want a SteamOS-like interface, and prefer an all-in-one Android app with built-in controller support.</p>
+          </div>
+          <div class="rec-card">
+            <h3>Pick Winlator if…</h3>
+            <p>You have a mix of Steam and non-Steam Windows games, don't mind more manual setup, and want broader compatibility testing.</p>
+          </div>
+          <div class="rec-card">
+            <h3>Pick MoboX if…</h3>
+            <p>You're comfortable with Termux/Linux, want a full desktop environment, and need maximum flexibility over ease of use.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+  
+</Layout>

@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Fix DroidDeck Audio Issues — DroidDeck Guide"
+  description="Fix DroidDeck audio stuttering, no sound, and audio delay. Audio backend and routing solutions."
+  page="troubleshooting"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:36px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px;max-width:820px}
+    .fix-section{margin-bottom:42px}
+    .fix-section h2{font-size:24px;margin-bottom:14px}
+    .fix-section p{font-size:15px;color:var(--muted);line-height:1.9}
+    .fix-section ol{padding-left:22px;font-size:15px;color:#43576c;line-height:1.9}
+    .fix-section li{margin:10px 0}
+    .callout{padding:16px 20px;background:#f0fdf4;border-left:4px solid #16a34a;border-radius:0 8px 8px 0;margin:20px 0}
+    .callout p{margin:0;font-size:13px;color:#166534;line-height:1.7}
+    .tag-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .tag{font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;background:#f0f7fc;color:#147cb9}
+  </style>
+  
+    <section class="page-header">
+      <div class="wrap">
+        <div class="hero-label"><span></span> Troubleshooting</div>
+        <h1>Audio stuttering / no sound</h1>
+        <p>Sound cuts out, is delayed, or missing entirely in DroidDeck.</p>
+        <div class="tag-list">
+          <span class="tag">Audio</span>
+          <span class="tag">Latency</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-content wrap">
+      <div class="fix-section">
+        <h2>Step-by-step fixes</h2>
+        <ol>
+          <li><strong>Check Android volume and media routing.</strong> Make sure media audio is going to the correct output (speakers, headphones, or Bluetooth device).</li>
+          <li><strong>Disable Bluetooth audio if it's stuttering.</strong> Some BT headphones add latency. Test with wired headphones or speakers first.</li>
+          <li><strong>Change the audio backend in DroidDeck.</strong> If available, try PulseAudio vs ALSA to see which works better for your device.</li>
+          <li><strong>Lower the game's frame rate cap.</strong> Uncapped frame rates can cause audio crackling. Cap at 30 or 60 FPS.</li>
+          <li><strong>Close background apps.</strong> Other apps using audio can cause conflicts or stuttering.</li>
+          <li><strong>Restart DroidDeck after changing audio devices.</strong> Audio routing sometimes doesn't update until the app is restarted.</li>
+        </ol>
+
+        <div class="callout">
+          <p>On Snapdragon 8 Gen 3 devices, a recent DroidDeck update improved audio latency. Make sure you're on the latest version.</p>
+        </div>
+      </div>
+
+      <div class="fix-section">
+        <h2>Still stuck?</h2>
+        <p>Report whether the issue is in Steam, in-game, or both; whether it happens with wired and wireless audio; and your DroidDeck version.</p>
+      </div>
+    </section>
+  
+  
+</Layout>

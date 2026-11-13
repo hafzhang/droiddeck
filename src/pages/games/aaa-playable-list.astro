@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="AAA Playable Games for DroidDeck — DroidDeck Guide"
+  description="AAA games that are playable on DroidDeck with lowered settings and FSR. Performance expectations for Android handhelds."
+  page="games"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:36px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .game-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+    .game-table th,.game-table td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .game-table th{background:#f4f7fa;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+    .game-table tr:last-child td{border-bottom:none}
+    .fps-mid{font-weight:700;color:#d97706}
+    .note{font-size:12px;color:var(--muted)}
+  </style>
+  
+    <section class="page-header">
+      <div class="wrap">
+        <div class="hero-label"><span></span> Game Compatibility</div>
+        <h1>AAA Playable List</h1>
+        <p>Demanding games that can be played on high-end DroidDeck devices with low settings and FSR. Expect 25–40 FPS, not 60.</p>
+      </div>
+    </section>
+
+    <section class="page-content wrap">
+      <div style="overflow-x:auto">
+        <table class="game-table">
+          <thead>
+            <tr>
+              <th>Game</th>
+              <th>Performance</th>
+              <th>Settings</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>The Witcher 3</td>
+              <td><span class="fps-mid">30–40 FPS</span></td>
+              <td>720p Low + FSR Quality</td>
+              <td class="note">Best on handhelds with active cooling. Cities drop FPS.</td>
+            </tr>
+            <tr>
+              <td>Grand Theft Auto V</td>
+              <td><span class="fps-mid">30–45 FPS</span></td>
+              <td>720p Normal + FSR</td>
+              <td class="note">Older DX11 title; runs better than many newer games.</td>
+            </tr>
+            <tr>
+              <td>Dark Souls III</td>
+              <td><span class="fps-mid">25–35 FPS</span></td>
+              <td>720p Low + FSR Balanced</td>
+              <td class="note">Playable but demanding; keep settings minimal.</td>
+            </tr>
+            <tr>
+              <td>Sekiro: Shadows Die Twice</td>
+              <td><span class="fps-mid">25–35 FPS</span></td>
+              <td>720p Low + FSR Performance</td>
+              <td class="note">Fast combat can feel sluggish below 30 FPS.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  
+  
+</Layout>

@@ -1,0 +1,98 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  page?: string;
+}
+
+const {
+  title,
+  description = "Independent DroidDeck troubleshooting & compatibility database.",
+  ogImage = "/assets/images/hero-screen.webp",
+  page = ""
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site || "https://droiddeck-guide.gg").toString();
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="theme-color" content="#0b1018">
+  <link rel="canonical" href={canonical}>
+  <link rel="icon" href="/assets/images/favicon.ico">
+  <link href="https://cdn.bootcdn.net/ajax/libs/remixicon/4.2.0/remixicon.css" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
+  <script defer src="/assets/js/main.js"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={ogImage}>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="DroidDeck Guide home">
+        <img src="/assets/images/logo.png" alt="DroidDeck" width="36" height="36">
+        <span>DroidDeck</span>
+        <small>Guide</small>
+      </a>
+      <button class="menu-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="ri-menu-line" aria-hidden="true"></i>
+      </button>
+      <nav id="site-nav" aria-label="Main navigation">
+        <a href="/" aria-current={page === "home" ? "page" : undefined}>Home</a>
+        <a href="/devices/" aria-current={page === "devices" ? "page" : undefined}>Devices</a>
+        <a href="/troubleshooting/" aria-current={page === "troubleshooting" ? "page" : undefined}>Troubleshooting</a>
+        <a href="/games/" aria-current={page === "games" ? "page" : undefined}>Games</a>
+        <a href="/compare/" aria-current={page === "compare" ? "page" : undefined}>Compare</a>
+        <a href="/updates/" aria-current={page === "updates" ? "page" : undefined}>Updates</a>
+        <a href="/#faq">FAQ</a>
+      </nav>
+      <a class="nav-download" href="https://droiddeck.app/" target="_blank" rel="nofollow noopener noreferrer">
+        <i class="ri-download-2-line" aria-hidden="true"></i> Get DroidDeck
+      </a>
+    </div>
+  </header>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-top">
+      <div>
+        <a class="brand" href="/">
+          <img src="/assets/images/logo.png" alt="DroidDeck" width="32" height="32">
+          <span>DroidDeck</span>
+          <small>Guide</small>
+        </a>
+        <p>Independent troubleshooting &amp; compatibility database for DroidDeck.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/devices/">Devices</a>
+        <a href="/troubleshooting/">Troubleshooting</a>
+        <a href="/compare/">Compare</a>
+        <a href="https://github.com/Droid-Deck/DroidDeck" target="_blank" rel="noopener noreferrer">GitHub <i class="ri-external-link-line" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span>© 2026 DroidDeck Guide</span>
+      <p>DroidDeck Guide is an independent community site and is not affiliated with the DroidDeck development team or Valve.</p>
+    </div>
+  </footer>
+
+  <button class="back-top" aria-label="Back to top" hidden><i class="ri-arrow-up-line" aria-hidden="true"></i></button>
+  <dialog class="image-dialog" aria-label="Image preview">
+    <button class="close-image" aria-label="Close">×</button>
+    <img alt="">
+    <p>Scroll to view · Press Esc to close</p>
+  </dialog>
+</body>
+</html>

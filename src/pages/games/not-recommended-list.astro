@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Games Not Recommended for DroidDeck — DroidDeck Guide"
+  description="Games that currently run poorly or not at all on DroidDeck. Save your storage space and avoid these titles for now."
+  page="games"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:36px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .game-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+    .game-table th,.game-table td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .game-table th{background:#f4f7fa;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+    .game-table tr:last-child td{border-bottom:none}
+    .fps-low{font-weight:700;color:#dc2626}
+    .note{font-size:12px;color:var(--muted)}
+  </style>
+  
+    <section class="page-header">
+      <div class="wrap">
+        <div class="hero-label"><span></span> Game Compatibility</div>
+        <h1>Not Recommended List</h1>
+        <p>Games that currently crash, run below 15 FPS, or have severe graphical issues on DroidDeck. Check back after updates.</p>
+      </div>
+    </section>
+
+    <section class="page-content wrap">
+      <div style="overflow-x:auto">
+        <table class="game-table">
+          <thead>
+            <tr>
+              <th>Game</th>
+              <th>Issue</th>
+              <th>Why it fails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Starfield</td>
+              <td><span class="fps-low">Unplayable</span></td>
+              <td class="note">DX12 and heavy CPU/GPU demands exceed current mobile hardware.</td>
+            </tr>
+            <tr>
+              <td>Baldur's Gate 3</td>
+              <td><span class="fps-low">Unplayable / crashes</span></td>
+              <td class="note">Vulkan/DX11 compatibility issues and very high RAM usage.</td>
+            </tr>
+            <tr>
+              <td>Hogwarts Legacy</td>
+              <td><span class="fps-low">Crashes on launch</span></td>
+              <td class="note">DX12 unsupported or unstable on current DroidDeck builds.</td>
+            </tr>
+            <tr>
+              <td>Forza Horizon 5</td>
+              <td><span class="fps-low">Crashes / black screen</span></td>
+              <td class="note">Anti-cheat and DX12 issues prevent launch.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  
+  
+</Layout>
