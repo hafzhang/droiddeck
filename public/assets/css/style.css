@@ -9,7 +9,7 @@
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:100px}
-body{margin:0;color:var(--ink);font-family:"Helvetica Neue",Helvetica,"PingFang SC",Tahoma,"Hiragino Sans GB","Heiti SC",Arial,"Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;font-size:16px;line-height:1.75}
+body{margin:0;color:var(--ink);font-family:"Helvetica Neue",Helvetica,"PingFang SC",Tahoma,"Hiragino Sans GB","Heiti SC",Arial,"Microsoft YaHei","WenQuanYi Micro Hei",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:16px;line-height:1.75}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer}
 button,a{-webkit-tap-highlight-color:transparent}
@@ -89,7 +89,7 @@ ul,ol{padding-left:24px}
 .story-copy h3{font-size:28px;margin-bottom:17px}
 .story-copy>p{font-size:14px;color:var(--muted);line-height:1.9}
 .check-list{padding:0;list-style:none;font-size:12px;line-height:2.4;margin:0 0 22px}
-.check-list li:before{content:"✓";color:#138fe5;margin-right:8px}
+.check-list li:before{content:"\eb7b";font-family:'remixicon';color:#138fe5;margin-right:8px}
 .text-link{font-size:13px;font-weight:600;color:#147cb9;display:inline-flex;gap:10px;align-items:center}
 .text-link:hover{color:#075482}
 .story-visual{min-width:0}
