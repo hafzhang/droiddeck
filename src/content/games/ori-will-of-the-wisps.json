@@ -1,0 +1,23 @@
+{
+  "title": "Ori and the Will of the Wisps",
+  "slug": "ori-will-of-the-wisps",
+  "genre": "Platformer",
+  "category": "indie-60fps",
+  "rating": 4,
+  "source": "community",
+  "recommendedSettings": "720p, High",
+  "performanceNotes": "Beautiful but more demanding than the first Ori. Runs well at 720p on Adreno 740 devices.",
+  "compatibility": [
+    { "device": "ayn-odin-2", "rating": 5, "fps": "60 FPS", "settings": "720p High" },
+    { "device": "ayaneo-pocket-s", "rating": 5, "fps": "60 FPS", "settings": "720p High" },
+    { "device": "odin-2-portal", "rating": 5, "fps": "60 FPS", "settings": "1080p High" },
+    { "device": "redmagic-9-pro", "rating": 5, "fps": "60 FPS", "settings": "1080p High" },
+    { "device": "rog-phone-9", "rating": 5, "fps": "60 FPS", "settings": "1080p Max" },
+    { "device": "snapdragon-8-gen-3", "rating": 5, "fps": "60 FPS", "settings": "1080p High" },
+    { "device": "snapdragon-8-gen-2", "rating": 4, "fps": "50–60 FPS", "settings": "720p High" },
+    { "device": "retroid-pocket-5", "rating": 3, "fps": "40–50 FPS", "settings": "720p Low" },
+    { "device": "retroid-pocket-4", "rating": 2, "fps": "25–35 FPS", "settings": "540p Low" },
+    { "device": "retroid-pocket-4-pro", "rating": 1, "fps": "Crashes", "settings": "—" }
+  ],
+  "lastUpdated": "2026-11-14"
+}

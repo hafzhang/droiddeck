@@ -1,0 +1,23 @@
+{
+  "title": "Starfield",
+  "slug": "starfield",
+  "genre": "Space RPG",
+  "category": "not-recommended",
+  "rating": 1,
+  "source": "community",
+  "recommendedSettings": "Not applicable",
+  "performanceNotes": "DX12 and heavy CPU/GPU demands exceed current mobile hardware. Unplayable on all tested devices.",
+  "compatibility": [
+    { "device": "ayn-odin-2", "rating": 1, "fps": "Unplayable", "settings": "—" },
+    { "device": "ayaneo-pocket-s", "rating": 1, "fps": "Unplayable", "settings": "—" },
+    { "device": "odin-2-portal", "rating": 1, "fps": "Unplayable", "settings": "—" },
+    { "device": "redmagic-9-pro", "rating": 1, "fps": "Unplayable", "settings": "—" },
+    { "device": "rog-phone-9", "rating": 1, "fps": "Unplayable", "settings": "—" },
+    { "device": "snapdragon-8-gen-3", "rating": 1, "fps": "Unplayable", "settings": "—" },
+    { "device": "snapdragon-8-gen-2", "rating": 1, "fps": "Unplayable", "settings": "—" },
+    { "device": "retroid-pocket-5", "rating": 1, "fps": "Unplayable", "settings": "—" },
+    { "device": "retroid-pocket-4", "rating": 1, "fps": "Unplayable", "settings": "—" },
+    { "device": "retroid-pocket-4-pro", "rating": 1, "fps": "Crashes", "settings": "—" }
+  ],
+  "lastUpdated": "2026-11-14"
+}

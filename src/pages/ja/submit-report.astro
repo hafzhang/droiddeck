@@ -1,0 +1,184 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="レポートを投稿 — DroidDeck ガイド"
+  description="DroidDeck のデバイステストやゲーム互換性レポートを投稿して、コミュニティデータベースを充実させましょう。"
+  page=""
+  locale="ja"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .report-grid{display:grid;grid-template-columns:1fr 360px;gap:50px;align-items:start}
+    .report-form{background:#fff;border:1px solid var(--line);border-radius:10px;padding:28px}
+    .form-group{margin-bottom:20px}
+    .form-group label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#203a52}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:6px;font-size:14px;font-family:inherit}
+    .form-group textarea{min-height:120px;resize:vertical}
+    .form-group small{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
+    .form-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .btn{display:inline-flex;justify-content:center;align-items:center;gap:10px;padding:12px 22px;border-radius:5px;font-size:14px;font-weight:650;line-height:1.6;transition:background .2s,transform .2s;border:0;cursor:pointer}
+    .btn:hover{transform:translateY(-2px)}
+    .primary{background:var(--blue);color:#041d31}
+    .primary:hover{background:#48b3ff}
+    .secondary{background:#f4f7fa;color:#203a52;border:1px solid var(--line)}
+    .sidebar{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:24px;position:sticky;top:100px}
+    .sidebar h3{font-size:16px;margin-bottom:14px}
+    .sidebar ul{padding-left:18px;font-size:13px;color:var(--muted);line-height:1.9}
+    .sidebar li{margin-bottom:8px}
+    .discord-box{background:#f0f7fc;border-radius:8px;padding:16px;margin-top:20px}
+    .discord-box h4{color:#147cb9;font-size:14px;margin-bottom:8px}
+    .discord-box p{font-size:13px;color:#203a52;margin:0;line-height:1.7}
+    .note-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:16px;margin-bottom:24px}
+    .note-box p{font-size:13px;color:#7c2d12;margin:0;line-height:1.7}
+    @media(max-width:900px){
+      .report-grid{display:block}
+      .sidebar{position:static;margin-top:30px}
+    }
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> 貢献</div>
+      <h1>互換性レポートを投稿</h1>
+      <p>あなたのテスト結果は、他のユーザーが端末やゲーム、設定を選ぶ手助けになります。具体的なレポートは曖昧なコメントより何倍も役立ちます。</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="report-grid">
+      <div>
+        <div class="note-box">
+          <p><strong>このフォームはサーバーにデータを保存しません。</strong>「レポートを生成」を押すと整形されたテキストが出力されるので、Discord や GitHub、メールに貼り付けてください。</p>
+        </div>
+
+        <form class="report-form" id="report-form">
+          <div class="form-group">
+            <label for="report-type">レポートの種類</label>
+            <select id="report-type" name="report-type">
+              <option value="device">デバイス テストレポート</option>
+              <option value="game">ゲーム互換性レポート</option>
+              <option value="issue">Bug / 問題レポート</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="device">デバイス / スマホ型番</label>
+            <input type="text" id="device" name="device" placeholder="例：Ayn Odin 2、Snapdragon 8 Gen 3">
+          </div>
+
+          <div class="form-group">
+            <label for="droiddeck-version">DroidDeck バージョン</label>
+            <input type="text" id="droiddeck-version" name="droiddeck-version" placeholder="例：1.2.0">
+            <small>DroidDeck の設定画面からバージョンを確認できます。</small>
+          </div>
+
+          <div class="form-group" id="game-field">
+            <label for="game">ゲーム名</label>
+            <input type="text" id="game" name="game" placeholder="例：Hades、The Witcher 3">
+          </div>
+
+          <div class="form-group">
+            <label for="settings">使用した設定</label>
+            <input type="text" id="settings" name="settings" placeholder="例：720p 低画質 + FSR Quality">
+          </div>
+
+          <div class="form-group">
+            <label for="result">結果 / パフォーマンス</label>
+            <textarea id="result" name="result" placeholder="FPS の範囲、クラッシュ、コントローラー問題、音声問題、熱スロットリングなど、実際に起きたことを記入してください。"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="source">情報源</label>
+            <select id="source" name="source">
+              <option value="verified">自分でテストした</option>
+              <option value="community">他の人の報告を見た</option>
+            </select>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary"><i class="ri-file-copy-line" aria-hidden="true"></i> レポートを生成</button>
+            <a class="btn secondary" href="https://github.com/Droid-Deck/DroidDeck" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i> GitHub を開く</a>
+          </div>
+        </form>
+
+        <div class="report-output" id="report-output" style="display:none;margin-top:24px;background:#0b1018;color:#c6cfda;border-radius:10px;padding:24px">
+          <h3 style="color:white;margin-bottom:12px">整形済みレポート</h3>
+          <pre id="report-text" style="white-space:pre-wrap;font-size:13px;line-height:1.8;margin:0"></pre>
+          <button type="button" class="btn primary" id="copy-report" style="margin-top:16px"><i class="ri-clipboard-line" aria-hidden="true"></i> クリップボードにコピー</button>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <h3>良いレポートに含めること</h3>
+        <ul>
+          <li><strong>デバイス名</strong>。できれば SoC と GPU も</li>
+          <li><strong>DroidDeck バージョン</strong>（設定画面から）</li>
+          <li><strong>ゲームのバージョン / プラットフォーム</strong>（Steam、GOG など）</li>
+          <li><strong>テストした解像度と FSR プリセット</strong></li>
+          <li><strong>FPS の範囲</strong> と落ちる場面</li>
+          <li><strong>クラッシュ、音声、コントローラー</strong> の問題</li>
+          <li><strong>自分でテスト</strong>したか、転載か</li>
+        </ul>
+
+        <div class="discord-box">
+          <h4><i class="ri-discord-line" aria-hidden="true"></i> Discord</h4>
+          <p>DroidDeck コミュニティ Discord に参加し、生成したレポートを #compatibility チャンネルに貼り付けてください。Discord を使わない場合は、メールまたは GitHub issue でも受け付けています。</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('report-form');
+    const output = document.getElementById('report-output');
+    const reportText = document.getElementById('report-text');
+    const copyBtn = document.getElementById('copy-report');
+    const reportType = document.getElementById('report-type');
+    const gameField = document.getElementById('game-field');
+
+    reportType.addEventListener('change', () => {
+      gameField.style.display = reportType.value === 'device' ? 'none' : 'block';
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      const typeText = data['report-type'] === 'device' ? 'デバイス テスト' : data['report-type'] === 'game' ? 'ゲーム互換性' : 'Bug/問題';
+      const lines = [
+        `**レポートの種類：** ${typeText}`,
+        `**デバイス：** ${data.device || '未入力'}`,
+        `**DroidDeck バージョン：** ${data['droiddeck-version'] || '未入力'}`,
+      ];
+      if (data['report-type'] !== 'device') {
+        lines.push(`**ゲーム：** ${data.game || '未入力'}`);
+      }
+      lines.push(
+        `**設定：** ${data.settings || '未入力'}`,
+        `**結果：** ${data.result || '未入力'}`,
+        `**情報源：** ${data.source === 'verified' ? '自分でテスト' : 'コミュニティ報告'}`
+      );
+      const text = lines.join('\n');
+      reportText.textContent = text;
+      output.style.display = 'block';
+      output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(reportText.textContent);
+        copyBtn.innerHTML = '<i class="ri-check-line" aria-hidden="true"></i> コピーしました！';
+        setTimeout(() => {
+          copyBtn.innerHTML = '<i class="ri-clipboard-line" aria-hidden="true"></i> クリップボードにコピー';
+        }, 2000);
+      } catch (err) {
+        reportText.focus();
+        reportText.select();
+      }
+    });
+  </script>
+</Layout>

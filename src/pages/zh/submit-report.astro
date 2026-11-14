@@ -1,0 +1,183 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="提交报告 — DroidDeck 指南"
+  description="提交 DroidDeck 设备测试或游戏兼容性报告，帮助社区数据库成长。"
+  page=""
+  locale="zh"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .report-grid{display:grid;grid-template-columns:1fr 360px;gap:50px;align-items:start}
+    .report-form{background:#fff;border:1px solid var(--line);border-radius:10px;padding:28px}
+    .form-group{margin-bottom:20px}
+    .form-group label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#203a52}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:6px;font-size:14px;font-family:inherit}
+    .form-group textarea{min-height:120px;resize:vertical}
+    .form-group small{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
+    .form-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .btn{display:inline-flex;justify-content:center;align-items:center;gap:10px;padding:12px 22px;border-radius:5px;font-size:14px;font-weight:650;line-height:1.6;transition:background .2s,transform .2s;border:0;cursor:pointer}
+    .btn:hover{transform:translateY(-2px)}
+    .primary{background:var(--blue);color:#041d31}
+    .primary:hover{background:#48b3ff}
+    .secondary{background:#f4f7fa;color:#203a52;border:1px solid var(--line)}
+    .sidebar{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:24px;position:sticky;top:100px}
+    .sidebar h3{font-size:16px;margin-bottom:14px}
+    .sidebar ul{padding-left:18px;font-size:13px;color:var(--muted);line-height:1.9}
+    .sidebar li{margin-bottom:8px}
+    .discord-box{background:#f0f7fc;border-radius:8px;padding:16px;margin-top:20px}
+    .discord-box h4{color:#147cb9;font-size:14px;margin-bottom:8px}
+    .discord-box p{font-size:13px;color:#203a52;margin:0;line-height:1.7}
+    .note-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:16px;margin-bottom:24px}
+    .note-box p{font-size:13px;color:#7c2d12;margin:0;line-height:1.7}
+    @media(max-width:900px){
+      .report-grid{display:block}
+      .sidebar{position:static;margin-top:30px}
+    }
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> 贡献</div>
+      <h1>提交兼容性报告</h1>
+      <p>你的测试结果能帮助别人决定买什么设备、玩什么游戏、用什么设置。一份详细的报告胜过十条模糊评论。</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="report-grid">
+      <div>
+        <div class="note-box">
+          <p><strong>本表单不在服务器存储数据。</strong>点击「生成报告」后，我们会生成一段格式化文本，你可以复制到 Discord、GitHub 或邮件中。</p>
+        </div>
+
+        <form class="report-form" id="report-form">
+          <div class="form-group">
+            <label for="report-type">报告类型</label>
+            <select id="report-type" name="report-type">
+              <option value="device">设备测试报告</option>
+              <option value="game">游戏兼容性报告</option>
+              <option value="issue">Bug / 问题报告</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="device">设备 / 手机型号</label>
+            <input type="text" id="device" name="device" placeholder="例如：Ayn Odin 2、骁龙 8 Gen 3">
+          </div>
+
+          <div class="form-group">
+            <label for="droiddeck-version">DroidDeck 版本</label>
+            <input type="text" id="droiddeck-version" name="droiddeck-version" placeholder="例如：1.2.0">
+            <small>从 DroidDeck 设置中查看版本号。</small>
+          </div>
+
+          <div class="form-group" id="game-field">
+            <label for="game">游戏名称</label>
+            <input type="text" id="game" name="game" placeholder="例如：Hades、巫师 3">
+          </div>
+
+          <div class="form-group">
+            <label for="settings">使用的设置</label>
+            <input type="text" id="settings" name="settings" placeholder="例如：720p 低画质 + FSR 质量">
+          </div>
+
+          <div class="form-group">
+            <label for="result">结果 / 性能表现</label>
+            <textarea id="result" name="result" placeholder="描述发生了什么：FPS 范围、崩溃、手柄问题、音频问题、发热降频等。"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="source">数据来源</label>
+            <select id="source" name="source">
+              <option value="verified">我自己测试的</option>
+              <option value="community">我看到别人报告的</option>
+            </select>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary"><i class="ri-file-copy-line" aria-hidden="true"></i> 生成报告</button>
+            <a class="btn secondary" href="https://github.com/Droid-Deck/DroidDeck" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i> 打开 GitHub</a>
+          </div>
+        </form>
+
+        <div class="report-output" id="report-output" style="display:none;margin-top:24px;background:#0b1018;color:#c6cfda;border-radius:10px;padding:24px">
+          <h3 style="color:white;margin-bottom:12px">你的格式化报告</h3>
+          <pre id="report-text" style="white-space:pre-wrap;font-size:13px;line-height:1.8;margin:0"></pre>
+          <button type="button" class="btn primary" id="copy-report" style="margin-top:16px"><i class="ri-clipboard-line" aria-hidden="true"></i> 复制到剪贴板</button>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <h3>一份好报告包含什么</h3>
+        <ul>
+          <li><strong>设备名称</strong>，尽量包含 SoC 和 GPU</li>
+          <li><strong>DroidDeck 版本</strong>，从应用设置中查看</li>
+          <li><strong>游戏版本 / 平台</strong>（Steam、GOG 等）</li>
+          <li><strong>测试的分辨率与 FSR 预设</strong></li>
+          <li><strong>FPS 范围</strong> 以及掉帧场景</li>
+          <li><strong>任何崩溃、音频或手柄问题</strong></li>
+          <li>是你<strong>亲自测试</strong>还是转发的报告</li>
+        </ul>
+
+        <div class="discord-box">
+          <h4><i class="ri-discord-line" aria-hidden="true"></i> Discord</h4>
+          <p>加入 DroidDeck 社区 Discord，把生成的报告贴到 #compatibility 频道。没有 Discord？也可以发邮件或在 GitHub 上开 issue。</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('report-form');
+    const output = document.getElementById('report-output');
+    const reportText = document.getElementById('report-text');
+    const copyBtn = document.getElementById('copy-report');
+    const reportType = document.getElementById('report-type');
+    const gameField = document.getElementById('game-field');
+
+    reportType.addEventListener('change', () => {
+      gameField.style.display = reportType.value === 'device' ? 'none' : 'block';
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      const lines = [
+        `**报告类型：** ${data['report-type'] === 'device' ? '设备测试' : data['report-type'] === 'game' ? '游戏兼容性' : 'Bug/问题'}`,
+        `**设备：** ${data.device || '未填写'}`,
+        `**DroidDeck 版本：** ${data['droiddeck-version'] || '未填写'}`,
+      ];
+      if (data['report-type'] !== 'device') {
+        lines.push(`**游戏：** ${data.game || '未填写'}`);
+      }
+      lines.push(
+        `**设置：** ${data.settings || '未填写'}`,
+        `**结果：** ${data.result || '未填写'}`,
+        `**来源：** ${data.source === 'verified' ? '亲自测试' : '社区报告'}`
+      );
+      const text = lines.join('\n');
+      reportText.textContent = text;
+      output.style.display = 'block';
+      output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(reportText.textContent);
+        copyBtn.innerHTML = '<i class="ri-check-line" aria-hidden="true"></i> 已复制！';
+        setTimeout(() => {
+          copyBtn.innerHTML = '<i class="ri-clipboard-line" aria-hidden="true"></i> 复制到剪贴板';
+        }, 2000);
+      } catch (err) {
+        reportText.focus();
+        reportText.select();
+      }
+    });
+  </script>
+</Layout>

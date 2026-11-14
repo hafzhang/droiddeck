@@ -1,0 +1,17 @@
+{
+  "name": "Ayn Odin 2 Portal",
+  "slug": "odin-2-portal",
+  "soc": "Snapdragon 8 Gen 3",
+  "gpu": "Adreno 750",
+  "ram": "8 / 12 GB LPDDR5X",
+  "display": "7\" 1080p 120 Hz IPS",
+  "battery": "~8000 mAh",
+  "cooling": "Active fan",
+  "status": "recommended",
+  "rating": 4.5,
+  "source": "community",
+  "fsrSupport": true,
+  "testedVersion": "1.2.0",
+  "lastUpdated": "2026-11-14",
+  "summary": "The current benchmark for dedicated Android handhelds running DroidDeck. Snapdragon 8 Gen 3 and Adreno 750 plus active cooling make it highly recommended."
+}

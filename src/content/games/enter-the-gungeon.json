@@ -1,0 +1,23 @@
+{
+  "title": "Enter the Gungeon",
+  "slug": "enter-the-gungeon",
+  "genre": "Bullet hell",
+  "category": "indie-60fps",
+  "rating": 5,
+  "source": "verified",
+  "recommendedSettings": "1080p, Max",
+  "performanceNotes": "Lightweight pixel-art bullet hell. Runs at 60 FPS on all Adreno devices.",
+  "compatibility": [
+    { "device": "ayn-odin-2", "rating": 5, "fps": "60 FPS", "settings": "1080p Max" },
+    { "device": "ayaneo-pocket-s", "rating": 5, "fps": "60 FPS", "settings": "1080p Max" },
+    { "device": "odin-2-portal", "rating": 5, "fps": "60 FPS", "settings": "1080p Max" },
+    { "device": "redmagic-9-pro", "rating": 5, "fps": "60 FPS", "settings": "1080p Max" },
+    { "device": "rog-phone-9", "rating": 5, "fps": "60 FPS", "settings": "1080p Max" },
+    { "device": "snapdragon-8-gen-3", "rating": 5, "fps": "60 FPS", "settings": "1080p Max" },
+    { "device": "snapdragon-8-gen-2", "rating": 5, "fps": "60 FPS", "settings": "1080p Max" },
+    { "device": "retroid-pocket-5", "rating": 5, "fps": "60 FPS", "settings": "720p" },
+    { "device": "retroid-pocket-4", "rating": 5, "fps": "60 FPS", "settings": "720p" },
+    { "device": "retroid-pocket-4-pro", "rating": 2, "fps": "Launches, unstable", "settings": "720p" }
+  ],
+  "lastUpdated": "2026-11-14"
+}

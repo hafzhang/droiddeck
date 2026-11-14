@@ -39,6 +39,8 @@ ul,ol{padding-left:24px}
 .site-header nav a[aria-current]:after{content:"";height:3px;background:var(--blue);position:absolute;bottom:0;left:0;right:0}
 .nav-download{background:var(--blue);color:#041e30;font-size:14px;font-weight:700;padding:9px 18px;border-radius:5px;white-space:nowrap}
 .nav-download:hover{background:#48b3ff}
+.nav-search{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:5px;color:#c6cfda;font-size:20px}
+.nav-search:hover{background:#1c2a3a;color:white}
 .menu-toggle{display:none}
 
 /* Hero */
@@ -72,7 +74,8 @@ ul,ol{padding-left:24px}
 /* Capability bar */
 .capability-bar{background:#f3f6f9;border-bottom:1px solid var(--line)}
 .capability-bar>.wrap{display:flex;justify-content:space-between;padding:22px 0;gap:16px}
-.capability-bar span{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600}
+.capability-bar a,.capability-bar span{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;color:inherit}
+.capability-bar a:hover{color:var(--blue)}
 .capability-bar i{font-size:23px;color:#49667e}
 
 /* Feature story */

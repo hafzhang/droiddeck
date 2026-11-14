@@ -1,0 +1,319 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="DroidDeck ガイド — トラブルシューティング＆互換性データベース"
+  description="DroidDeck に関する独立したトラブルシューティング＆互換性データベース。Android 携帯ゲーム機や Snapdragon スマホ向けのデバイス検証、エラー修正、ゲーム互換性リスト、比較レビュー、バージョン更新情報。"
+  page="home"
+  locale="ja"
+>
+  <section class="game-hero" id="hero">
+    <div class="wrap">
+      <div class="hero-intro">
+        <div>
+          <div class="hero-label"><span></span> 独立したコミュニティリソース</div>
+          <h1>DroidDeck ガイド<span class="hero-subtitle">トラブルシューティング＆互換性データベース</span></h1>
+          <p class="hero-slogan">動くの？<br>どう直す？<br>最適な設定は？</p>
+        </div>
+        <div class="hero-explain">
+          <h2>コミュニティから、コミュニティのために</h2>
+          <p>私たちは実機で DroidDeck をテストし、エラーの修正方法を集め、ゲーム互換性リストを管理しています。トラブルシューティングに時間をかけず、ゲームに集中しましょう。</p>
+          <div class="actions">
+            <a class="btn primary" href="/ja/compatibility-matrix/"><i class="ri-table-line" aria-hidden="true"></i> 互換性マトリクス</a>
+            <a class="btn dark-outline" href="/ja/devices/">デバイスを見る <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+            <a class="btn dark-outline" href="/ja/troubleshooting/">問題を修正 <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+          </div>
+          <div class="hero-notes">
+            <span><i class="ri-check-line" aria-hidden="true"></i> デバイス テストレポート</span>
+            <span><i class="ri-check-line" aria-hidden="true"></i> エラー FAQ</span>
+            <span><i class="ri-check-line" aria-hidden="true"></i> ゲーム互換性</span>
+          </div>
+        </div>
+      </div>
+
+      <figure class="hero-screen">
+        <div class="screen-caption">
+          <span><i class="ri-gamepad-line" aria-hidden="true"></i> 実機テスト、わかりやすい回答</span>
+          <span>COMPATIBILITY FIRST</span>
+        </div>
+        <img src="/assets/images/hero-screen.webp" alt="DroidDeck Steam ビッグピクチャー ライブラリ" width="1440" height="667" fetchpriority="high" decoding="async">
+      </figure>
+
+      <div class="hero-bottom">
+        <span>Android 携帯ゲーム機と Snapdragon スマホ向けの独立ガイド</span>
+        <a href="#devices">データベースを探索 <i class="ri-arrow-down-line" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="capability-bar">
+    <div class="wrap">
+      <a href="/ja/devices/"><i class="ri-smartphone-line" aria-hidden="true"></i> デバイス テスト</a>
+      <a href="/ja/troubleshooting/"><i class="ri-bug-line" aria-hidden="true"></i> エラー修正</a>
+      <a href="/ja/games/"><i class="ri-gamepad-line" aria-hidden="true"></i> ゲームリスト</a>
+      <a href="/ja/compatibility-matrix/"><i class="ri-table-line" aria-hidden="true"></i> 互換性マトリクス</a>
+      <a href="/ja/updates/"><i class="ri-git-pull-request-line" aria-hidden="true"></i> バージョン情報</a>
+      <a href="/ja/compare/"><i class="ri-scales-3-line" aria-hidden="true"></i> ツール比較</a>
+    </div>
+  </div>
+
+  <section class="feature-story wrap" id="devices">
+    <div class="section-heading">
+      <div>
+        <span class="kicker">デバイス互換性</span>
+        <h2>ダウンロード前に確認しよう</h2>
+      </div>
+      <p>すべての Android デバイスが DroidDeck を快適に動かせるわけではありません。<br>デバイスページは、最も重要な質問に答えます：あなたの端末で動きますか？</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-copy">
+        <span class="section-number">01 / デバイス テストレポート</span>
+        <h3>実機検証、<br>本物の回答</h3>
+        <p>各デバイスページには、コミュニティによる実機テスト結果が掲載されています。DroidDeck が起動するか、どのゲームが遊べるか、推奨解像度と FSR 設定、既知の不具合などです。</p>
+        <p>私たちは、ユーザーが実際に気にするデバイス、つまり Android 携帯ゲーム機と Snapdragon フラグシップ スマホに焦点を当て、新しい DroidDeck バージョンがリリースされるたびにデータを更新しています。</p>
+        <ul class="check-list">
+          <li>起動、安定性、発熱に関するメモ</li>
+          <li>推奨解像度と FSR プリセット</li>
+          <li>コントローラー、キーボード、タッチマッピングのヒント</li>
+        </ul>
+        <a class="text-link" href="/ja/devices/ayn-odin-2/">Ayn Odin 2 レポートを見る <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+      </div>
+      <figure class="story-visual">
+        <button class="zoom-button" aria-label="デバイス互換性のスクリーンショットを拡大">
+          <img src="/assets/images/game-management.webp" alt="DroidDeck ゲーム管理画面" width="1280" height="614" loading="lazy" decoding="async">
+          <span class="zoom-hint"><i class="ri-fullscreen-line" aria-hidden="true"></i> 拡大表示</span>
+        </button>
+        <figcaption>DroidDeck ゲーム管理</figcaption>
+      </figure>
+    </div>
+    <div class="device-grid">
+      <article>
+        <i class="ri-gamepad-line" aria-hidden="true"></i>
+        <h3>Ayn Odin 2</h3>
+        <p>Snapdragon 8 Gen 2 搭載の携帯ゲーム機。熱管理も優れ、DroidDeck の信頼性の高い選択肢です。</p>
+        <a href="/ja/devices/ayn-odin-2/">レポートを読む</a>
+      </article>
+      <article>
+        <i class="ri-gamepad-line" aria-hidden="true"></i>
+        <h3>Retroid Pocket 5</h3>
+        <p>Snapdragon 865 搭載。重いタイトルをプレイする前に GPU 互換性を確認してください。</p>
+        <a href="/ja/devices/retroid-pocket-5/">レポートを読む</a>
+      </article>
+      <article>
+        <i class="ri-gamepad-line" aria-hidden="true"></i>
+        <h3>Ayaneo Pocket S</h3>
+        <p>Snapdragon G3x Gen 2 搭載。高級な作りで、高負荷ゲームに最適です。</p>
+        <a href="/ja/devices/ayaneo-pocket-s/">レポートを読む</a>
+      </article>
+      <article>
+        <i class="ri-cpu-line" aria-hidden="true"></i>
+        <h3>Snapdragon 8 Gen 3 スマホ</h3>
+        <p>Adreno 750 を搭載した最新フラグシップ。スマホとして最高の生性能を持ちます。</p>
+        <a href="/ja/devices/snapdragon-8-gen-3/">レポートを読む</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="control-story" id="troubleshooting">
+    <div class="wrap control-grid">
+      <figure>
+        <button class="zoom-button" aria-label="トラブルシューティング画面のスクリーンショットを拡大">
+          <img src="/assets/images/controller-mapping.webp" alt="DroidDeck タッチコントローラー エディター" width="960" height="540" loading="lazy" decoding="async">
+          <span class="zoom-hint"><i class="ri-fullscreen-line" aria-hidden="true"></i> 拡大表示</span>
+        </button>
+        <figcaption>タッチコントローラー マッピング</figcaption>
+      </figure>
+      <div class="control-copy">
+        <span class="section-number">02 / エラー修正</span>
+        <h2>詰まった？ここから始めよう。</h2>
+        <p>黒画面、起動時クラッシュ、Steam ログイン失敗、容量不足、コントローラー認識しない、音声の乱れ——各問題を症状、原因、段階的な修正手順に分解しています。</p>
+        <div class="control-options">
+          <span><i class="ri-bug-line" aria-hidden="true"></i> 黒画面</span>
+          <span><i class="ri-bug-line" aria-hidden="true"></i> クラッシュ</span>
+          <span><i class="ri-bug-line" aria-hidden="true"></i> Steam ログイン</span>
+          <span><i class="ri-bug-line" aria-hidden="true"></i> 音が出ない</span>
+        </div>
+        <a class="text-link" href="/ja/troubleshooting/black-screen/">黒画面を修正 <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-area wrap" id="games">
+    <div class="section-heading">
+      <div>
+        <span class="kicker">データベースを探索</span>
+        <h2>答えを見つける 5 つの方法</h2>
+      </div>
+      <p>デバイス、エラー、ゲーム、比較、更新から閲覧できます。<br>どのセクションも検索とクイック参照に最適化されています。</p>
+    </div>
+    <div class="gallery-layout">
+      <div class="gallery-tabs" role="tablist" aria-label="データベース セクション">
+        <button role="tab" id="tab-devices" aria-controls="panel-devices" aria-selected="true" tabindex="0">
+          <span>01</span>
+          <div><strong>デバイス</strong><small>テストレポートと設定</small></div>
+          <i class="ri-arrow-right-line" aria-hidden="true"></i>
+        </button>
+        <button role="tab" id="tab-troubleshooting" aria-controls="panel-troubleshooting" aria-selected="false" tabindex="-1">
+          <span>02</span>
+          <div><strong>トラブルシューティング</strong><small>エラー修正と FAQ</small></div>
+          <i class="ri-arrow-right-line" aria-hidden="true"></i>
+        </button>
+        <button role="tab" id="tab-games" aria-controls="panel-games" aria-selected="false" tabindex="-1">
+          <span>03</span>
+          <div><strong>ゲーム</strong><small>互換性リスト</small></div>
+          <i class="ri-arrow-right-line" aria-hidden="true"></i>
+        </button>
+        <button role="tab" id="tab-compare" aria-controls="panel-compare" aria-selected="false" tabindex="-1">
+          <span>04</span>
+          <div><strong>比較</strong><small>他ツールとの比較</small></div>
+          <i class="ri-arrow-right-line" aria-hidden="true"></i>
+        </button>
+        <button role="tab" id="tab-updates" aria-controls="panel-updates" aria-selected="false" tabindex="-1">
+          <span>05</span>
+          <div><strong>アップデート</strong><small>更新ログと既知の問題</small></div>
+          <i class="ri-arrow-right-line" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="gallery-panels">
+        <figure role="tabpanel" id="panel-devices" aria-labelledby="tab-devices">
+          <button class="zoom-button" aria-label="デバイス パネルを拡大">
+            <img src="/assets/images/steam-library.webp" alt="Steam ビッグピクチャー ライブラリ" width="1440" height="667" loading="lazy" decoding="async">
+            <span class="zoom-hint"><i class="ri-fullscreen-line" aria-hidden="true"></i> 拡大表示</span>
+          </button>
+          <figcaption>デバイスページには実機テスト結果と推奨設定が掲載されています。</figcaption>
+        </figure>
+        <figure role="tabpanel" id="panel-troubleshooting" aria-labelledby="tab-troubleshooting" hidden>
+          <button class="zoom-button" aria-label="トラブルシューティング パネルを拡大">
+            <img src="/assets/images/game-management.webp" alt="DroidDeck ゲーム管理" width="1280" height="614" loading="lazy" decoding="async">
+            <span class="zoom-hint"><i class="ri-fullscreen-line" aria-hidden="true"></i> 拡大表示</span>
+          </button>
+          <figcaption>各エラーには症状、原因、修正手順をまとめた専用ページがあります。</figcaption>
+        </figure>
+        <figure role="tabpanel" id="panel-games" aria-labelledby="tab-games" hidden>
+          <button class="zoom-button" aria-label="ゲーム パネルを拡大">
+            <img src="/assets/images/hero-screen.webp" alt="DroidDeck Steam ライブラリ" width="1440" height="667" loading="lazy" decoding="async">
+            <span class="zoom-hint"><i class="ri-fullscreen-line" aria-hidden="true"></i> 拡大表示</span>
+          </button>
+          <figcaption>ゲームリストは 60 FPS インディーゲームと高負荷 3A ゲームを分類しています。</figcaption>
+        </figure>
+        <figure role="tabpanel" id="panel-compare" aria-labelledby="tab-compare" hidden>
+          <button class="zoom-button" aria-label="比較パネルを拡大">
+            <img src="/assets/images/controller-mapping.webp" alt="DroidDeck コントローラー マッピング" width="960" height="540" loading="lazy" decoding="async">
+            <span class="zoom-hint"><i class="ri-fullscreen-line" aria-hidden="true"></i> 拡大表示</span>
+          </button>
+          <figcaption>DroidDeck、Winlator、Mobox を比較して最適なツールを選びましょう。</figcaption>
+        </figure>
+        <figure role="tabpanel" id="panel-updates" aria-labelledby="tab-updates" hidden>
+          <button class="zoom-button" aria-label="アップデート パネルを拡大">
+            <img src="/assets/images/game-management-detail.webp" alt="DroidDeck ゲーム管理 詳細" width="1280" height="614" loading="lazy" decoding="async">
+            <span class="zoom-hint"><i class="ri-fullscreen-line" aria-hidden="true"></i> 拡大表示</span>
+          </button>
+          <figcaption>各リリースには翻訳された更新ノートとコミュニティのバグまとめが付属します。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="getting-started" id="compare">
+    <div class="wrap">
+      <div class="section-heading">
+        <div>
+          <span class="kicker">ツールを選ぶ</span>
+          <h2>DroidDeck と代替ツールの比較</h2>
+        </div>
+        <a class="text-link" href="/ja/compare/">完全な比較を読む <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+      </div>
+      <div class="compare-grid">
+        <article>
+          <h3>DroidDeck</h3>
+          <p class="tag">Steam 優先 · ARM64 ネイティブ</p>
+          <p>Android 上で SteamOS のような体験を求め、ネイティブ ARM64 Steam クライアントと統合されたコントローラー マッピングが欲しい人に最適です。</p>
+        </article>
+        <article>
+          <h3>Winlator</h3>
+          <p class="tag">Box 系 · 互換性が広い</p>
+          <p>Steam 以外の Windows アプリやゲームの実行に強い。設定は多く、手動での調整が必要です。</p>
+        </article>
+        <article>
+          <h3>MoboX</h3>
+          <p class="tag">Termux 系 · PC 環境</p>
+          <p>Linux/Termux のワークフローに慣れているユーザー向け。環境オーバーヘッドが大きい。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-area wrap" id="faq">
+    <div class="faq-intro">
+      <span class="kicker">よくある質問</span>
+      <h2>FAQ</h2>
+      <p>このサイト、互換性、貢献方法に関する<br>簡潔な回答。</p>
+      <a class="text-link" href="/ja/troubleshooting/">すべての修正を見る <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>これは DroidDeck の公式サイトですか？ <i class="ri-add-line" aria-hidden="true"></i></summary>
+        <p>いいえ。DroidDeck ガイドは独立したコミュニティリソースです。公式サイトは <a href="https://droiddeck.app/" target="_blank" rel="noopener noreferrer">droiddeck.app</a> です。私たちはトラブルシューティングと互換性データに焦点を当て、ダウンロード自体は提供していません。</p>
+      </details>
+      <details>
+        <summary>どのデバイスで DroidDeck が動きますか？ <i class="ri-add-line" aria-hidden="true"></i></summary>
+        <p>DroidDeck は Android 9 以降で、GPU が Adreno 730 以降のデバイスで動作します。Snapdragon 8 Gen 2/Gen 3 スマホや Ayn Odin 2、Retroid Pocket 5、Ayaneo Pocket S などの Android 携帯ゲーム機が人気です。Mali と Google Tensor GPU は公式にはサポートされていません。</p>
+      </details>
+      <details>
+        <summary>PC や root は必要ですか？ <i class="ri-add-line" aria-hidden="true"></i></summary>
+        <p>PC からのストリーミングも root も不要です。DroidDeck は Android デバイス上でゲームをローカル実行します。一部のデバイスでは初回設定時にサブプロセス数の上限を一度調整する必要があります。</p>
+      </details>
+      <details>
+        <summary>互換性データはどのように収集されますか？ <i class="ri-add-line" aria-hidden="true"></i></summary>
+        <p>コミュニティレポート、Reddit/Discord の議論、私たち自身のテストを組み合わせています。各ページに「検証済み」または「コミュニティレポート」と表示し、信頼度を示しています。</p>
+      </details>
+      <details>
+        <summary>テスト結果を投稿できますか？ <i class="ri-add-line" aria-hidden="true"></i></summary>
+        <p>はい。フッターの投稿報告リンクから、または Discord でご連絡ください。デバイス、DroidDeck バージョン、ゲーム、設定、結果を含めてください。</p>
+      </details>
+      <details>
+        <summary>データベースはどのくらいの頻度で更新されますか？ <i class="ri-add-line" aria-hidden="true"></i></summary>
+        <p>新しい DroidDeck リリース後 48 時間以内に、翻訳された更新ノートとバグまとめを公開することを目指しています。デバイスとゲームページは四半期ごと、または重大なバグが報告された際に見直します。</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="download-area" id="updates">
+    <div class="wrap download-inner">
+      <div>
+        <span class="download-kicker">最新情報を入手</span>
+        <h2>最新の互換性ノートを受け取ろう。</h2>
+        <p>新しい DroidDeck リリースは、動作状況を変えることがあります。私たちは更新ログを翻訳し、新しいバグをまとめるので、更新前に把握できます。</p>
+        <div class="actions">
+          <a class="btn primary" href="/ja/updates/"><i class="ri-git-pull-request-line" aria-hidden="true"></i> 最新アップデート</a>
+          <a class="btn dark-outline" href="https://droiddeck.app/" target="_blank" rel="nofollow noopener noreferrer">公式ダウンロード <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <figure class="download-qr">
+        <div class="qr-placeholder"><i class="ri-qr-code-line" aria-hidden="true"></i></div>
+        <figcaption>QR コードをスキャンして公式ダウンロード</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "DroidDeck ガイド",
+        "url": "https://droiddeck-guide.gg/ja/",
+        "description": "DroidDeck に関する独立したトラブルシューティング＆互換性データベース。"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type":"Question","name":"これは DroidDeck の公式サイトですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。DroidDeck ガイドは独立したコミュニティリソースです。公式サイトは droiddeck.app です。"}},
+          {"@type":"Question","name":"どのデバイスで DroidDeck が動きますか？","acceptedAnswer":{"@type":"Answer","text":"DroidDeck は Android 9 以降で、GPU が Adreno 730 以降のデバイスで動作します。Snapdragon 8 Gen 2/Gen 3 スマホや Android 携帯ゲーム機が人気です。"}},
+          {"@type":"Question","name":"PC や root は必要ですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。DroidDeck は Android デバイス上でゲームをローカル実行します。root は不要です。"}}
+        ]
+      }
+    ]
+  })} />
+</Layout>

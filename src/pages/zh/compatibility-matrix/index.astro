@@ -1,0 +1,211 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const [devices, games] = await Promise.all([
+  getCollection('devices'),
+  getCollection('games')
+]);
+
+devices.sort((a, b) => b.data.rating - a.data.rating);
+
+games.sort((a, b) => {
+  const catOrder = { 'indie-60fps': 0, 'aaa-playable': 1, 'testing': 2, 'not-recommended': 3 };
+  return catOrder[a.data.category] - catOrder[b.data.category] || a.data.title.localeCompare(b.data.title);
+});
+
+const categoryLabels: Record<string, string> = {
+  'indie-60fps': 'Indie 60 FPS',
+  'aaa-playable': 'AAA 可玩',
+  'not-recommended': '不推荐',
+  'testing': '测试中'
+};
+
+const categoryBadgeClass: Record<string, string> = {
+  'indie-60fps': 'badge-green',
+  'aaa-playable': 'badge-amber',
+  'not-recommended': 'badge-red',
+  'testing': 'badge-blue'
+};
+
+function cellClass(rating: number) {
+  if (rating >= 5) return 'cell-excellent';
+  if (rating >= 4) return 'cell-good';
+  if (rating >= 3) return 'cell-playable';
+  if (rating >= 2) return 'cell-poor';
+  return 'cell-bad';
+}
+
+function renderStars(rating: number) {
+  const full = Math.floor(rating);
+  const half = rating % 1 >= 0.5 ? 1 : 0;
+  const empty = 5 - full - half;
+  const stars = [];
+  for (let i = 0; i < full; i++) stars.push('<i class="ri-star-fill" aria-hidden="true"></i>');
+  if (half) stars.push('<i class="ri-star-half-fill" aria-hidden="true"></i>');
+  for (let i = 0; i < empty; i++) stars.push('<i class="ri-star-line" aria-hidden="true"></i>');
+  return stars.join('');
+}
+---
+
+<Layout
+  title="兼容性矩阵 — DroidDeck 指南"
+  description="DroidDeck 游戏 × 设备兼容性矩阵。快速查看哪些游戏能在你的安卓掌机或骁龙手机上运行。"
+  page="matrix"
+  locale="zh"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:720px}
+    .page-content{padding:50px 0 80px}
+    .filters{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;align-items:center}
+    .filters label{font-size:13px;font-weight:700;color:#203a52}
+    .filters select{padding:9px 14px;border:1px solid var(--line);border-radius:6px;font-size:13px;background:#fff}
+    .matrix-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+    .matrix-table{width:100%;border-collapse:collapse;font-size:13px;min-width:900px}
+    .matrix-table th,.matrix-table td{padding:12px 14px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);vertical-align:top;text-align:left}
+    .matrix-table th{background:#f4f7fa;position:sticky;top:0;z-index:2}
+    .matrix-table th:first-child{position:sticky;left:0;z-index:3;background:#f4f7fa}
+    .matrix-table td:first-child{position:sticky;left:0;background:#fff;z-index:1;min-width:180px}
+    .matrix-table tr:last-child td{border-bottom:none}
+    .matrix-table td:last-child,.matrix-table th:last-child{border-right:none}
+    .device-head{display:block;font-weight:700;color:#203a52;white-space:nowrap}
+    .device-head small{display:block;font-weight:400;color:var(--muted);font-size:11px}
+    .game-cell{display:flex;flex-direction:column;gap:4px}
+    .game-cell strong{font-size:13px;color:#203a52}
+    .game-cell .genre{font-size:11px;color:var(--muted)}
+    .badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap;width:fit-content}
+    .badge-green{background:#f0fdf4;color:#16a34a}
+    .badge-amber{background:#fffbeb;color:#d97706}
+    .badge-red{background:#fef2f2;color:#dc2626}
+    .badge-blue{background:#f0f7fc;color:#147cb9}
+    .cell-excellent{background:#f0fdf4;color:#166534}
+    .cell-good{background:#ecfdf5;color:#15803d}
+    .cell-playable{background:#fffbeb;color:#92400e}
+    .cell-poor{background:#fff7ed;color:#c2410c}
+    .cell-bad{background:#fef2f2;color:#991b1b}
+    .cell-excellent,.cell-good,.cell-playable,.cell-poor,.cell-bad{font-weight:700;white-space:nowrap;text-align:center}
+    .cell-excellent .stars,.cell-good .stars,.cell-playable .stars,.cell-poor .stars,.cell-bad .stars{font-size:11px;display:block;margin-bottom:2px}
+    .cell-fps{font-size:10px;font-weight:400;opacity:.9}
+    .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:20px;font-size:12px;color:var(--muted)}
+    .legend span{display:inline-flex;align-items:center;gap:6px}
+    .legend i{font-size:14px}
+    @media(max-width:760px){
+      .matrix-table th,.matrix-table td{padding:10px}
+      .cell-fps{display:none}
+    }
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> 兼容数据库</div>
+      <h1>游戏 × 设备兼容性矩阵</h1>
+      <p>快速回答“这个游戏能在我的设备上跑吗？”每个单元格显示兼容性评分、帧率范围和推荐设置，基于社区或验证过的测试结果。</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="filters">
+      <label for="filter-category">游戏分类：</label>
+      <select id="filter-category">
+        <option value="all">全部游戏</option>
+        <option value="indie-60fps">Indie 60 FPS</option>
+        <option value="aaa-playable">AAA 可玩</option>
+        <option value="not-recommended">不推荐</option>
+      </select>
+
+      <label for="filter-device">高亮设备：</label>
+      <select id="filter-device">
+        <option value="all">全部设备</option>
+        {devices.map(d => (
+          <option value={d.data.slug}>{d.data.name}</option>
+        ))}
+      </select>
+    </div>
+
+    <div class="matrix-wrap">
+      <table class="matrix-table" id="matrix-table">
+        <thead>
+          <tr>
+            <th>游戏</th>
+            {devices.map(d => (
+              <th data-device={d.data.slug}>
+                <span class="device-head">
+                  {d.data.name}
+                  <small>{d.data.gpu}</small>
+                </span>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {games.map(g => {
+            const compatMap = Object.fromEntries(g.data.compatibility.map(c => [c.device, c]));
+            return (
+              <tr data-category={g.data.category} id={g.data.slug}>
+                <td>
+                  <div class="game-cell">
+                    <span class={`badge ${categoryBadgeClass[g.data.category]}`}>{categoryLabels[g.data.category]}</span>
+                    <strong>{g.data.title}</strong>
+                    <span class="genre">{g.data.genre}</span>
+                  </div>
+                </td>
+                {devices.map(d => {
+                  const c = compatMap[d.data.slug];
+                  if (!c) return <td data-device={d.data.slug}>—</td>;
+                  return (
+                    <td class={cellClass(c.rating)} data-device={d.data.slug}>
+                      <span class="stars" aria-label={`评分 ${c.rating} / 5`} set:html={renderStars(c.rating)}></span>
+                      <span class="cell-fps">{c.fps}</span>
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="legend">
+      <span><i class="ri-star-fill" style="color:#16a34a"></i> 5 = 优秀（60 FPS）</span>
+      <span><i class="ri-star-fill" style="color:#15803d"></i> 4 = 良好（30–60 FPS）</span>
+      <span><i class="ri-star-fill" style="color:#d97706"></i> 3 = 可玩（20–30 FPS）</span>
+      <span><i class="ri-star-fill" style="color:#c2410c"></i> 2 = 较差（低于 20 FPS，即 &lt; 20 FPS）</span>
+      <span><i class="ri-star-fill" style="color:#dc2626"></i> 1 = 无法运行 / 崩溃</span>
+    </div>
+  </section>
+
+  <script>
+    const categoryFilter = document.getElementById('filter-category');
+    const deviceFilter = document.getElementById('filter-device');
+    const table = document.getElementById('matrix-table');
+
+    function applyFilters() {
+      const category = categoryFilter.value;
+      const device = deviceFilter.value;
+
+      table.querySelectorAll('tbody tr').forEach(row => {
+        const rowCategory = row.dataset.category;
+        const categoryMatch = category === 'all' || rowCategory === category;
+        row.style.display = categoryMatch ? '' : 'none';
+      });
+
+      table.querySelectorAll('thead th[data-device], tbody td[data-device]').forEach(cell => {
+        if (device === 'all') {
+          cell.style.display = '';
+          cell.style.opacity = '1';
+        } else if (cell.dataset.device === device) {
+          cell.style.display = '';
+          cell.style.opacity = '1';
+        } else {
+          cell.style.opacity = '0.35';
+        }
+      });
+    }
+
+    categoryFilter.addEventListener('change', applyFilters);
+    deviceFilter.addEventListener('change', applyFilters);
+  </script>
+</Layout>

@@ -1,0 +1,118 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { localizePath } from '../../i18n/translations';
+
+const locale = 'en';
+const [devices, games] = await Promise.all([getCollection('devices'), getCollection('games')]);
+
+const index = [
+  ...devices.map(d => ({
+    type: 'device',
+    title: d.data.name,
+    slug: d.data.slug,
+    category: d.data.soc,
+    summary: d.data.summary,
+    url: localizePath(`/devices/${d.data.slug}/`, locale)
+  })),
+  ...games.map(g => ({
+    type: 'game',
+    title: g.data.title,
+    slug: g.data.slug,
+    category: g.data.genre,
+    summary: `${g.data.recommendedSettings}. ${g.data.performanceNotes}`,
+    url: localizePath(`/compatibility-matrix/`, locale) + `#${g.data.slug}`
+  }))
+];
+---
+
+<Layout
+  title="Search — DroidDeck Guide"
+  description="Search devices and games in the DroidDeck compatibility database."
+  page=""
+  locale={locale}
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .search-box{position:relative;max-width:640px;margin-bottom:32px}
+    .search-box input{width:100%;padding:16px 20px 16px 48px;border:1px solid var(--line);border-radius:10px;font-size:16px;background:#fff}
+    .search-box i{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:20px}
+    .results{display:grid;gap:16px}
+    .result-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:6px}
+    .result-card h3{font-size:16px;margin:0}
+    .result-card h3 a{color:#203a52}
+    .result-card .meta{font-size:12px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap}
+    .result-card p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
+    .badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 10px;border-radius:999px}
+    .badge-device{background:#f0f7fc;color:#147cb9}
+    .badge-game{background:#f0fdf4;color:#16a34a}
+    .empty{color:var(--muted);font-size:14px}
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> Search</div>
+      <h1>Find a device or game</h1>
+      <p>Search the compatibility database by name, genre, SoC, or settings.</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="search-box">
+      <i class="ri-search-line" aria-hidden="true"></i>
+      <input type="search" id="search-input" placeholder="e.g. Odin 2, Hades, Adreno 740" autocomplete="off" />
+    </div>
+    <div class="results" id="search-results">
+      <p class="empty">Start typing to search devices and games.</p>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ searchIndex: index }}>
+    window.__searchIndex = searchIndex;
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.basic.min.js"></script>
+  <script>
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const indexData = window.__searchIndex || [];
+    const fuse = new Fuse(indexData, {
+      keys: ['title', 'category', 'summary'],
+      threshold: 0.4,
+      ignoreLocation: true
+    });
+
+    function render(items) {
+      if (!items.length) {
+        results.innerHTML = '<p class="empty">No results found. Try a shorter or different term.</p>';
+        return;
+      }
+      results.innerHTML = items.map(item => `
+        <article class="result-card">
+          <div class="meta">
+            <span class="badge badge-${item.type}">${item.type === 'device' ? 'Device' : 'Game'}</span>
+            <span>${item.category}</span>
+          </div>
+          <h3><a href="${item.url}">${item.title}</a></h3>
+          <p>${item.summary}</p>
+        </article>
+      `).join('');
+    }
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim();
+      if (!q) {
+        results.innerHTML = '<p class="empty">Start typing to search devices and games.</p>';
+        return;
+      }
+      const found = fuse.search(q).map(r => r.item);
+      render(found);
+    });
+
+    if (input.value.trim()) {
+      input.dispatchEvent(new Event('input'));
+    }
+  </script>
+</Layout>

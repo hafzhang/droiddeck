@@ -1,0 +1,17 @@
+{
+  "name": "Retroid Pocket 4",
+  "slug": "retroid-pocket-4",
+  "soc": "Snapdragon 865",
+  "gpu": "Adreno 650",
+  "ram": "4 GB LPDDR4X",
+  "display": "4.7\" 750×1334 IPS",
+  "battery": "4500 mAh",
+  "cooling": "Passive + small fan",
+  "status": "limited",
+  "rating": 2.5,
+  "source": "community",
+  "fsrSupport": true,
+  "testedVersion": "1.2.0",
+  "lastUpdated": "2026-11-14",
+  "summary": "Budget sibling of the Pocket 5 with only 4 GB RAM. 2D indie games and older titles are playable, but modern AAA games are generally not worth the storage space."
+}

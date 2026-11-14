@@ -1,0 +1,23 @@
+{
+  "title": "Cyberpunk 2077",
+  "slug": "cyberpunk-2077",
+  "genre": "Open-world RPG",
+  "category": "not-recommended",
+  "rating": 1,
+  "source": "community",
+  "recommendedSettings": "Not applicable",
+  "performanceNotes": "Extremely heavy GPU/RAM requirements and DX12 issues. Crashes or runs at 10–15 FPS even on the best mobile hardware.",
+  "compatibility": [
+    { "device": "ayn-odin-2", "rating": 1, "fps": "10–15 FPS / crashes", "settings": "720p Low" },
+    { "device": "ayaneo-pocket-s", "rating": 1, "fps": "10–15 FPS / crashes", "settings": "720p Low" },
+    { "device": "odin-2-portal", "rating": 2, "fps": "15–22 FPS", "settings": "720p Low + FSR" },
+    { "device": "redmagic-9-pro", "rating": 2, "fps": "15–22 FPS", "settings": "720p Low + FSR" },
+    { "device": "rog-phone-9", "rating": 2, "fps": "15–25 FPS", "settings": "720p Low + FSR" },
+    { "device": "snapdragon-8-gen-3", "rating": 2, "fps": "15–22 FPS", "settings": "720p Low + FSR" },
+    { "device": "snapdragon-8-gen-2", "rating": 1, "fps": "10–15 FPS / crashes", "settings": "720p Low" },
+    { "device": "retroid-pocket-5", "rating": 1, "fps": "Not playable", "settings": "—" },
+    { "device": "retroid-pocket-4", "rating": 1, "fps": "Not playable", "settings": "—" },
+    { "device": "retroid-pocket-4-pro", "rating": 1, "fps": "Crashes", "settings": "—" }
+  ],
+  "lastUpdated": "2026-11-14"
+}

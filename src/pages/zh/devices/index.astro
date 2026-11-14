@@ -1,0 +1,147 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const devices = await getCollection('devices');
+
+devices.sort((a, b) => b.data.rating - a.data.rating);
+
+const statusClass: Record<string, string> = {
+  recommended: 'status-good',
+  good: 'status-good',
+  mixed: 'status-mixed',
+  limited: 'status-limited',
+  'not-recommended': 'status-limited'
+};
+
+const statusText: Record<string, string> = {
+  recommended: '推荐',
+  good: '良好',
+  mixed: '一般',
+  limited: '有限',
+  'not-recommended': '不推荐'
+};
+
+const sourceText: Record<string, string> = {
+  verified: '已验证',
+  community: '社区报告',
+  testing: '测试中',
+  untested: '未测试'
+};
+
+function renderStars(rating: number) {
+  const full = Math.floor(rating);
+  const half = rating % 1 >= 0.5 ? 1 : 0;
+  const empty = 5 - full - half;
+  const stars = [];
+  for (let i = 0; i < full; i++) stars.push('<i class="ri-star-fill" aria-hidden="true"></i>');
+  if (half) stars.push('<i class="ri-star-half-fill" aria-hidden="true"></i>');
+  for (let i = 0; i < empty; i++) stars.push('<i class="ri-star-line" aria-hidden="true"></i>');
+  return stars.join('');
+}
+---
+
+<Layout
+  title="设备兼容性 — DroidDeck 指南"
+  description="DroidDeck 设备兼容性报告，覆盖安卓掌机与骁龙手机。真实测试、推荐设置与已知问题。"
+  page="devices"
+  locale="zh"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .filters{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;align-items:center}
+    .filters label{font-size:13px;font-weight:700;color:#203a52}
+    .filters select{padding:9px 14px;border:1px solid var(--line);border-radius:6px;font-size:13px;background:#fff}
+    .device-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .device-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;transition:transform .2s,border-color .2s}
+    .device-card:hover{transform:translateY(-3px);border-color:#b8d7f0}
+    .device-card h3{font-size:18px;margin-bottom:6px}
+    .device-card .soc{font-size:13px;color:var(--muted);margin-bottom:12px}
+    .device-card .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .device-card .meta span{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:#f0f7fc;color:#147cb9}
+    .device-card p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+    .device-card a{font-size:13px;font-weight:700;color:#147cb9}
+    .rating{margin-bottom:12px;font-size:13px;color:#f59e0b}
+    .status-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px}
+    .status-good{background:rgba(22,163,74,.1);color:#16a34a}
+    .status-mixed{background:rgba(217,119,6,.1);color:#d97706}
+    .status-limited{background:rgba(220,38,38,.1);color:#dc2626}
+    .source-badge{font-size:11px;padding:3px 10px}
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> 设备兼容性</div>
+      <h1>你的设备能跑吗？</h1>
+      <p>社区测试的安卓掌机与骁龙手机。每张卡片显示兼容性评分、数据来源与简要总结。</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="filters">
+      <label for="filter-status">状态：</label>
+      <select id="filter-status">
+        <option value="all">全部</option>
+        <option value="recommended">推荐</option>
+        <option value="good">良好</option>
+        <option value="mixed">一般</option>
+        <option value="limited">有限 / 不推荐</option>
+      </select>
+      <label for="filter-gpu">GPU：</label>
+      <select id="filter-gpu">
+        <option value="all">全部 GPU</option>
+        <option value="Adreno 830">Adreno 830</option>
+        <option value="Adreno 750">Adreno 750</option>
+        <option value="Adreno 740">Adreno 740</option>
+        <option value="Adreno 650">Adreno 650</option>
+        <option value="Mali-G77 MC9">Mali-G77</option>
+      </select>
+    </div>
+
+    <div class="device-grid" id="device-grid">
+      {devices.map(d => (
+        <article class="device-card" data-status={d.data.status} data-gpu={d.data.gpu}>
+          <div class="meta" style="margin-bottom:12px">
+            <span class={`status-badge ${statusClass[d.data.status]}`}>
+              <i class={d.data.source === 'verified' ? 'ri-shield-check-line' : d.data.source === 'community' ? 'ri-user-community-line' : 'ri-flask-line'}></i>
+              {statusText[d.data.status]}
+            </span>
+            <span class={`source-badge source-${d.data.source}`}>
+              <i class={d.data.source === 'verified' ? 'ri-shield-check-line' : d.data.source === 'community' ? 'ri-user-community-line' : 'ri-flask-line'}></i>
+              {sourceText[d.data.source]}
+            </span>
+          </div>
+          <h3>{d.data.name}</h3>
+          <div class="soc">{d.data.soc} · {d.data.gpu}</div>
+          <div class="rating" aria-label={`兼容性评分：${d.data.rating} / 5`} set:html={renderStars(d.data.rating)}></div>
+          <p>{d.data.summary}</p>
+          <a href={`/devices/${d.data.slug}/`}>阅读完整报告 <i class="ri-arrow-right-line"></i></a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <script>
+    const statusFilter = document.getElementById('filter-status');
+    const gpuFilter = document.getElementById('filter-gpu');
+    const grid = document.getElementById('device-grid');
+
+    function applyFilters() {
+      const status = statusFilter.value;
+      const gpu = gpuFilter.value;
+      grid.querySelectorAll('.device-card').forEach(card => {
+        const cardStatus = card.dataset.status;
+        const cardGpu = card.dataset.gpu;
+        const statusMatch = status === 'all' || cardStatus === status || (status === 'limited' && (cardStatus === 'limited' || cardStatus === 'not-recommended'));
+        const gpuMatch = gpu === 'all' || cardGpu === gpu;
+        card.style.display = statusMatch && gpuMatch ? '' : 'none';
+      });
+    }
+
+    statusFilter.addEventListener('change', applyFilters);
+    gpuFilter.addEventListener('change', applyFilters);
+  </script>
+</Layout>

@@ -1,0 +1,23 @@
+{
+  "title": "Dark Souls III",
+  "slug": "dark-souls-iii",
+  "genre": "Action RPG",
+  "category": "aaa-playable",
+  "rating": 3,
+  "source": "community",
+  "recommendedSettings": "720p Low + FSR Balanced",
+  "performanceNotes": "Playable but demanding. Frame pacing can feel uneven; cap at 30 FPS for smoother experience.",
+  "compatibility": [
+    { "device": "ayn-odin-2", "rating": 3, "fps": "25–35 FPS", "settings": "720p Low + FSR" },
+    { "device": "ayaneo-pocket-s", "rating": 3, "fps": "25–35 FPS", "settings": "720p Low + FSR" },
+    { "device": "odin-2-portal", "rating": 4, "fps": "30–40 FPS", "settings": "720p Medium + FSR" },
+    { "device": "redmagic-9-pro", "rating": 3, "fps": "25–35 FPS", "settings": "720p Low + FSR" },
+    { "device": "rog-phone-9", "rating": 4, "fps": "35–45 FPS", "settings": "720p Medium + FSR" },
+    { "device": "snapdragon-8-gen-3", "rating": 3, "fps": "25–35 FPS", "settings": "720p Low + FSR" },
+    { "device": "snapdragon-8-gen-2", "rating": 3, "fps": "22–30 FPS", "settings": "720p Low + FSR" },
+    { "device": "retroid-pocket-5", "rating": 2, "fps": "15–22 FPS", "settings": "720p Low" },
+    { "device": "retroid-pocket-4", "rating": 1, "fps": "Not playable", "settings": "—" },
+    { "device": "retroid-pocket-4-pro", "rating": 1, "fps": "Crashes", "settings": "—" }
+  ],
+  "lastUpdated": "2026-11-14"
+}

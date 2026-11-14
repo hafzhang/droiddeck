@@ -1,0 +1,23 @@
+{
+  "title": "Elden Ring",
+  "slug": "elden-ring",
+  "genre": "Action RPG",
+  "category": "aaa-playable",
+  "rating": 3,
+  "source": "community",
+  "recommendedSettings": "720p Low + FSR Performance",
+  "performanceNotes": "Heavy open-world action RPG. Playable on high-end devices at 720p low. Frame generation not recommended due to input latency.",
+  "compatibility": [
+    { "device": "ayn-odin-2", "rating": 3, "fps": "20–30 FPS", "settings": "720p Low" },
+    { "device": "ayaneo-pocket-s", "rating": 3, "fps": "20–30 FPS", "settings": "720p Low" },
+    { "device": "odin-2-portal", "rating": 4, "fps": "25–35 FPS", "settings": "720p Low + FSR" },
+    { "device": "redmagic-9-pro", "rating": 3, "fps": "20–30 FPS", "settings": "720p Low + FSR" },
+    { "device": "rog-phone-9", "rating": 4, "fps": "25–35 FPS", "settings": "720p Low + FSR" },
+    { "device": "snapdragon-8-gen-3", "rating": 3, "fps": "25–32 FPS", "settings": "720p Low" },
+    { "device": "snapdragon-8-gen-2", "rating": 3, "fps": "20–28 FPS", "settings": "720p Low" },
+    { "device": "retroid-pocket-5", "rating": 1, "fps": "Not playable", "settings": "—" },
+    { "device": "retroid-pocket-4", "rating": 1, "fps": "Not playable", "settings": "—" },
+    { "device": "retroid-pocket-4-pro", "rating": 1, "fps": "Crashes", "settings": "—" }
+  ],
+  "lastUpdated": "2026-11-14"
+}

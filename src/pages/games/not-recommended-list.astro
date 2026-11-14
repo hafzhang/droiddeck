@@ -1,11 +1,28 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const games = await getCollection('games', g => g.data.category === 'not-recommended');
+games.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const sourceLabel: Record<string, string> = {
+  verified: 'Verified',
+  community: 'Community',
+  testing: 'Testing',
+  untested: 'Untested'
+};
+
+function statusText(game: (typeof games)[number]['data']) {
+  const entry = game.compatibility[0];
+  return entry ? entry.fps : 'Unplayable';
+}
 ---
 
 <Layout
   title="Games Not Recommended for DroidDeck — DroidDeck Guide"
   description="Games that currently run poorly or not at all on DroidDeck. Save your storage space and avoid these titles for now."
   page="games"
+  locale="en"
 >
   <style>
     .page-header{background:var(--night);color:white;padding:90px 0 50px}
@@ -19,70 +36,50 @@ import Layout from '../../layouts/Layout.astro';
     .fps-low{font-weight:700;color:#dc2626}
     .note{font-size:12px;color:var(--muted)}
     .source-badge{font-size:11px;padding:3px 10px}
+    .source-verified{background:#f0fdf4;color:#16a34a}
+    .source-community{background:#fffbeb;color:#d97706}
+    .source-testing{background:#f0f7fc;color:#147cb9}
+    .source-untested{background:#f1f5f9;color:#64748b}
   </style>
-  
-    <section class="page-header">
-      <div class="wrap">
-        <div class="hero-label"><span></span> Game Compatibility</div>
-        <h1>Not Recommended List</h1>
-        <p>Games that currently crash, run below 15 FPS, or have severe graphical issues on DroidDeck. Check back after updates.</p>
-      </div>
-    </section>
 
-    <section class="page-content wrap">
-      <div style="overflow-x:auto">
-        <table class="game-table">
-          <thead>
-            <tr>
-              <th>Game</th>
-              <th>Issue</th>
-              <th>Why it fails</th>
-              <th>Source</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Starfield</strong></td>
-              <td><span class="fps-low">Unplayable</span></td>
-              <td class="note">DX12 and heavy CPU/GPU demands exceed current mobile hardware.</td>
-              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
-            </tr>
-            <tr>
-              <td><strong>Baldur's Gate 3</strong></td>
-              <td><span class="fps-low">Unplayable / crashes</span></td>
-              <td class="note">Vulkan/DX11 compatibility issues and very high RAM usage.</td>
-              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
-            </tr>
-            <tr>
-              <td><strong>Hogwarts Legacy</strong></td>
-              <td><span class="fps-low">Crashes on launch</span></td>
-              <td class="note">DX12 unsupported or unstable on current DroidDeck builds.</td>
-              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
-            </tr>
-            <tr>
-              <td><strong>Forza Horizon 5</strong></td>
-              <td><span class="fps-low">Crashes / black screen</span></td>
-              <td class="note">Anti-cheat and DX12 issues prevent launch.</td>
-              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
-            </tr>
-            <tr>
-              <td><strong>Cyberpunk 2077</strong></td>
-              <td><span class="fps-low">Crashes / 10–15 FPS</span></td>
-              <td class="note">Extremely heavy GPU/RAM requirements and DX12 issues.</td>
-              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
-            </tr>
-            <tr>
-              <td><strong>Alan Wake 2</strong></td>
-              <td><span class="fps-low">Crashes on launch</span></td>
-              <td class="note">Mesh shaders and DX12 features not supported on Adreno.</td>
-              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> Game Compatibility</div>
+      <h1>Not Recommended List</h1>
+      <p>Games that currently crash, run below 15 FPS, or have severe graphical issues on DroidDeck. Check back after updates.</p>
+    </div>
+  </section>
 
-      <p class="note" style="margin-top:20px"><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span> reports only. If a future DroidDeck update fixes one of these games, please <a href="/submit-report/">submit a report</a> so we can move it to the playable list.</p>
-    </section>
-  
-  
+  <section class="page-content wrap">
+    <div style="overflow-x:auto">
+      <table class="game-table">
+        <thead>
+          <tr>
+            <th>Game</th>
+            <th>Issue</th>
+            <th>Why it fails</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          {games.map(g => (
+            <tr>
+              <td><strong>{g.data.title}</strong></td>
+              <td><span class="fps-low">{statusText(g.data)}</span></td>
+              <td class="note">{g.data.performanceNotes}</td>
+              <td>
+                <span class={`source-badge source-${g.data.source}`}>
+                  <i class={g.data.source === 'verified' ? 'ri-shield-check-line' : 'ri-user-community-line'} aria-hidden="true"></i> {sourceLabel[g.data.source]}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note" style="margin-top:20px">
+      <span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span> reports only. If a future DroidDeck update fixes one of these games, please <a href="/submit-report/">submit a report</a> so we can move it to the playable list.
+    </p>
+  </section>
 </Layout>

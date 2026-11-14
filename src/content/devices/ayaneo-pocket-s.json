@@ -1,0 +1,17 @@
+{
+  "name": "Ayaneo Pocket S",
+  "slug": "ayaneo-pocket-s",
+  "soc": "Snapdragon G3x Gen 2",
+  "gpu": "Adreno 740",
+  "ram": "16 GB",
+  "display": "6\" 1440p OLED",
+  "battery": "6000 mAh",
+  "cooling": "Active fan",
+  "status": "recommended",
+  "rating": 5,
+  "source": "verified",
+  "fsrSupport": true,
+  "testedVersion": "1.2.0",
+  "lastUpdated": "2026-11-14",
+  "summary": "Premium 1440p OLED display with active cooling and generous RAM. One of the best handhelds for DroidDeck, though games usually render at 720p–1080p and let the screen upscale."
+}

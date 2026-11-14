@@ -6,10 +6,32 @@ import Layout from '../layouts/Layout.astro';
   title="DroidDeck Guide — Troubleshooting & Compatibility Database"
   description="Independent DroidDeck troubleshooting & compatibility database. Device tests, error fixes, game compatibility lists, comparisons, and update notes for Android handhelds and Snapdragon phones."
   page="home"
+
+  locale="en"
 >
-  
-  
-    <section class="game-hero" id="hero">
+  <script is:inline>
+    (function () {
+      try {
+        const supported = ['en', 'zh', 'ja'];
+        const saved = localStorage.getItem('dd-locale');
+        if (saved && supported.includes(saved)) {
+          if (saved !== 'en' && location.pathname === '/') {
+            location.replace('/' + saved + '/');
+          }
+          return;
+        }
+        const detected = (navigator.language || navigator.userLanguage || 'en').slice(0, 2).toLowerCase();
+        if (detected === 'zh' || detected === 'ja') {
+          localStorage.setItem('dd-locale', detected);
+          location.replace('/' + detected + '/');
+        } else {
+          localStorage.setItem('dd-locale', 'en');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <section class="game-hero" id="hero">
       <div class="wrap">
         <div class="hero-intro">
           <div>
@@ -21,7 +43,8 @@ import Layout from '../layouts/Layout.astro';
             <h2>From the community, for the community</h2>
             <p>We test DroidDeck on real devices, collect error fixes, and maintain game compatibility lists so you spend less time troubleshooting and more time gaming.</p>
             <div class="actions">
-              <a class="btn primary" href="/#devices"><i class="ri-smartphone-line" aria-hidden="true"></i> Browse Devices</a>
+              <a class="btn primary" href="/compatibility-matrix/"><i class="ri-table-line" aria-hidden="true"></i> Compatibility Matrix</a>
+              <a class="btn dark-outline" href="/devices/">Browse Devices <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
               <a class="btn dark-outline" href="/#troubleshooting">Fix an Issue <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
             </div>
             <div class="hero-notes">
@@ -49,11 +72,12 @@ import Layout from '../layouts/Layout.astro';
 
     <div class="capability-bar">
       <div class="wrap">
-        <span><i class="ri-smartphone-line" aria-hidden="true"></i> Device Tests</span>
-        <span><i class="ri-bug-line" aria-hidden="true"></i> Error Fixes</span>
-        <span><i class="ri-gamepad-line" aria-hidden="true"></i> Game Lists</span>
-        <span><i class="ri-git-pull-request-line" aria-hidden="true"></i> Version Notes</span>
-        <span><i class="ri-scales-3-line" aria-hidden="true"></i> Tool Comparisons</span>
+        <a href="/devices/"><i class="ri-smartphone-line" aria-hidden="true"></i> Device Tests</a>
+        <a href="/troubleshooting/"><i class="ri-bug-line" aria-hidden="true"></i> Error Fixes</a>
+        <a href="/games/"><i class="ri-gamepad-line" aria-hidden="true"></i> Game Lists</a>
+        <a href="/compatibility-matrix/"><i class="ri-table-line" aria-hidden="true"></i> Compatibility Matrix</a>
+        <a href="/updates/"><i class="ri-git-pull-request-line" aria-hidden="true"></i> Version Notes</a>
+        <a href="/compare/"><i class="ri-scales-3-line" aria-hidden="true"></i> Tool Comparisons</a>
       </div>
     </div>
 

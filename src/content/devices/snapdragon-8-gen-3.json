@@ -1,0 +1,17 @@
+{
+  "name": "Snapdragon 8 Gen 3 Phones",
+  "slug": "snapdragon-8-gen-3",
+  "soc": "Snapdragon 8 Gen 3",
+  "gpu": "Adreno 750",
+  "ram": "12–16 GB",
+  "display": "Varies by model",
+  "battery": "Varies by model",
+  "cooling": "Passive (phone)",
+  "status": "recommended",
+  "rating": 4.5,
+  "source": "community",
+  "fsrSupport": true,
+  "testedVersion": "1.2.0",
+  "lastUpdated": "2026-11-14",
+  "summary": "Best DroidDeck performance in a phone form factor. Adreno 750 is faster and more efficient than Adreno 740, closing some of the gap with dedicated handhelds. Active cooling recommended."
+}

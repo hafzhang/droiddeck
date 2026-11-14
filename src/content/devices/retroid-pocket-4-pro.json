@@ -1,0 +1,17 @@
+{
+  "name": "Retroid Pocket 4 Pro",
+  "slug": "retroid-pocket-4-pro",
+  "soc": "MediaTek Dimensity 1100",
+  "gpu": "Mali-G77 MC9",
+  "ram": "8 GB LPDDR4X",
+  "display": "4.7\" 750×1334 IPS",
+  "battery": "4500 mAh",
+  "cooling": "Passive + small fan",
+  "status": "not-recommended",
+  "rating": 1.5,
+  "source": "community",
+  "fsrSupport": false,
+  "testedVersion": "1.2.0",
+  "lastUpdated": "2026-11-14",
+  "summary": "Uses a MediaTek Dimensity 1100 with Mali graphics. DroidDeck officially targets Adreno GPUs, so Mali compatibility is poor. Most users report crashes, black screens, or failure to launch the Steam client."
+}

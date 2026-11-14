@@ -1,193 +1,140 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const devices = await getCollection('devices');
+
+devices.sort((a, b) => b.data.rating - a.data.rating);
+
+const statusClass: Record<string, string> = {
+  recommended: 'status-good',
+  good: 'status-good',
+  mixed: 'status-mixed',
+  limited: 'status-limited',
+  'not-recommended': 'status-limited'
+};
+
+const statusText: Record<string, string> = {
+  recommended: 'Recommended',
+  good: 'Good',
+  mixed: 'Mixed',
+  limited: 'Limited',
+  'not-recommended': 'Not Recommended'
+};
+
+function renderStars(rating: number) {
+  const full = Math.floor(rating);
+  const half = rating % 1 >= 0.5 ? 1 : 0;
+  const empty = 5 - full - half;
+  const stars = [];
+  for (let i = 0; i < full; i++) stars.push('<i class="ri-star-fill" aria-hidden="true"></i>');
+  if (half) stars.push('<i class="ri-star-half-fill" aria-hidden="true"></i>');
+  for (let i = 0; i < empty; i++) stars.push('<i class="ri-star-line" aria-hidden="true"></i>');
+  return stars.join('');
+}
 ---
 
 <Layout
-  title="Device Compatibility — DroidDeck Guide"
-  description="DroidDeck device compatibility reports for Android handhelds and Snapdragon phones. Real tests, settings, and known issues."
+  title="Compatible Devices — DroidDeck Guide"
+  description="DroidDeck device compatibility reports for Android handhelds and Snapdragon phones. Real tests, ratings, and recommended settings."
   page="devices"
+  locale="en"
 >
   <style>
     .page-header{background:var(--night);color:white;padding:90px 0 50px}
     .page-header h1{font-size:42px;margin-bottom:12px}
     .page-header p{color:#93a7ba;max-width:600px}
     .page-content{padding:50px 0 80px}
-    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-    .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px;transition:transform .2s,border-color .2s}
-    .card:hover{transform:translateY(-3px);border-color:#b8d7f0}
-    .card i{font-size:32px;color:#168fd5;margin-bottom:16px;display:block}
-    .card h3{font-size:18px;margin-bottom:8px}
-    .card p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px}
-    .card .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-    .card .meta span{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:#f0f7fc;color:#147cb9}
-    .card a{font-size:13px;font-weight:700;color:#147cb9}
+    .filters{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;align-items:center}
+    .filters label{font-size:13px;font-weight:700;color:#203a52}
+    .filters select{padding:9px 14px;border:1px solid var(--line);border-radius:6px;font-size:13px;background:#fff}
+    .device-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .device-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;transition:transform .2s,border-color .2s}
+    .device-card:hover{transform:translateY(-3px);border-color:#b8d7f0}
+    .device-card h3{font-size:18px;margin-bottom:6px}
+    .device-card .soc{font-size:13px;color:var(--muted);margin-bottom:12px}
+    .device-card .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .device-card .meta span{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:#f0f7fc;color:#147cb9}
+    .device-card p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+    .device-card a{font-size:13px;font-weight:700;color:#147cb9}
+    .rating{margin-bottom:12px;font-size:13px;color:#f59e0b}
     .status-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px}
     .status-good{background:rgba(22,163,74,.1);color:#16a34a}
     .status-mixed{background:rgba(217,119,6,.1);color:#d97706}
     .status-limited{background:rgba(220,38,38,.1);color:#dc2626}
+    .source-badge{font-size:11px;padding:3px 10px}
   </style>
-  
-    <section class="page-header">
-      <div class="wrap">
-        <div class="hero-label"><span></span> Device Compatibility</div>
-        <h1>Will it run on your device?</h1>
-        <p>Hands-on DroidDeck reports for Android handhelds and Snapdragon phones. Each page includes launch results, recommended settings, and known issues.</p>
-      </div>
-    </section>
 
-    <section class="page-content wrap">
-      <div class="card-grid">
-        <article class="card">
-          <i class="ri-gamepad-line" aria-hidden="true"></i>
-          <div class="meta" style="margin-bottom:12px">
-            <span class="status-badge status-good"><i class="ri-checkbox-circle-line"></i> Recommended</span>
-            <span class="source-badge source-verified"><i class="ri-shield-check-line"></i> Verified</span>
-          </div>
-          <h3>Ayn Odin 2</h3>
-          <div class="meta">
-            <span>SD 8 Gen 2</span>
-            <span>Adreno 740</span>
-          </div>
-          <p>Excellent thermal headroom and solid Adreno 740 performance. One of the most reliable Android handhelds for DroidDeck.</p>
-          <a href="/devices/ayn-odin-2/">Read full report <i class="ri-arrow-right-line"></i></a>
-        </article>
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> Device Compatibility</div>
+      <h1>Will it run on your device?</h1>
+      <p>Community-tested Android handhelds and Snapdragon phones. Each card shows the compatibility rating, source, and a quick summary.</p>
+    </div>
+  </section>
 
-        <article class="card">
-          <i class="ri-gamepad-line" aria-hidden="true"></i>
-          <div class="meta" style="margin-bottom:12px">
-            <span class="status-badge status-mixed"><i class="ri-error-warning-line"></i> Mixed</span>
-            <span class="source-badge source-community"><i class="ri-user-community-line"></i> Community</span>
-          </div>
-          <h3>Retroid Pocket 5</h3>
-          <div class="meta">
-            <span>SD 865</span>
-            <span>Adreno 650</span>
-          </div>
-          <p>Adreno 650 is below the official recommended GPU tier. Lighter titles and older indie games work; heavy 3A is a struggle.</p>
-          <a href="/devices/retroid-pocket-5/">Read full report <i class="ri-arrow-right-line"></i></a>
-        </article>
+  <section class="page-content wrap">
+    <div class="filters">
+      <label for="filter-status">Filter:</label>
+      <select id="filter-status">
+        <option value="all">All statuses</option>
+        <option value="recommended">Recommended</option>
+        <option value="good">Good</option>
+        <option value="mixed">Mixed</option>
+        <option value="limited">Limited / Not Recommended</option>
+      </select>
+      <label for="filter-gpu">GPU:</label>
+      <select id="filter-gpu">
+        <option value="all">All GPUs</option>
+        <option value="Adreno 830">Adreno 830</option>
+        <option value="Adreno 750">Adreno 750</option>
+        <option value="Adreno 740">Adreno 740</option>
+        <option value="Adreno 650">Adreno 650</option>
+        <option value="Mali-G77 MC9">Mali-G77</option>
+      </select>
+    </div>
 
-        <article class="card">
-          <i class="ri-gamepad-line" aria-hidden="true"></i>
+    <div class="device-grid" id="device-grid">
+      {devices.map(d => (
+        <article class="device-card" data-status={d.data.status} data-gpu={d.data.gpu}>
           <div class="meta" style="margin-bottom:12px">
-            <span class="status-badge status-good"><i class="ri-checkbox-circle-line"></i> Recommended</span>
-            <span class="source-badge source-verified"><i class="ri-shield-check-line"></i> Verified</span>
+            <span class={`status-badge ${statusClass[d.data.status]}`}>
+              <i class={d.data.source === 'verified' ? 'ri-shield-check-line' : d.data.source === 'community' ? 'ri-user-community-line' : 'ri-flask-line'}></i>
+              {statusText[d.data.status]}
+            </span>
+            <span class={`source-badge source-${d.data.source}`}>
+              <i class={d.data.source === 'verified' ? 'ri-shield-check-line' : d.data.source === 'community' ? 'ri-user-community-line' : 'ri-flask-line'}></i>
+              {d.data.source === 'verified' ? 'Verified' : d.data.source === 'community' ? 'Community' : 'Testing'}
+            </span>
           </div>
-          <h3>Ayaneo Pocket S</h3>
-          <div class="meta">
-            <span>SD G3x Gen 2</span>
-            <span>Adreno 740</span>
-          </div>
-          <p>Premium build with strong sustained performance. The large screen makes it ideal for FSR-upscaled games.</p>
-          <a href="/devices/ayaneo-pocket-s/">Read full report <i class="ri-arrow-right-line"></i></a>
+          <h3>{d.data.name}</h3>
+          <div class="soc">{d.data.soc} · {d.data.gpu}</div>
+          <div class="rating" aria-label={`Compatibility rating: ${d.data.rating} out of 5`} set:html={renderStars(d.data.rating)}></div>
+          <p>{d.data.summary}</p>
+          <a href={`/devices/${d.data.slug}/`}>Read full report <i class="ri-arrow-right-line"></i></a>
         </article>
+      ))}
+    </div>
+  </section>
 
-        <article class="card">
-          <i class="ri-smartphone-line" aria-hidden="true"></i>
-          <div class="meta" style="margin-bottom:12px">
-            <span class="status-badge status-good"><i class="ri-checkbox-circle-line"></i> Recommended</span>
-            <span class="source-badge source-community"><i class="ri-user-community-line"></i> Community</span>
-          </div>
-          <h3>Snapdragon 8 Gen 3 Phones</h3>
-          <div class="meta">
-            <span>SD 8 Gen 3</span>
-            <span>Adreno 750</span>
-          </div>
-          <p>Highest phone-class performance. Pair with a clip-on controller or docking solution for the best experience.</p>
-          <a href="/devices/snapdragon-8-gen-3/">Read full report <i class="ri-arrow-right-line"></i></a>
-        </article>
+  <script>
+    const statusFilter = document.getElementById('filter-status');
+    const gpuFilter = document.getElementById('filter-gpu');
+    const grid = document.getElementById('device-grid');
 
-        <article class="card">
-          <i class="ri-smartphone-line" aria-hidden="true"></i>
-          <div class="meta" style="margin-bottom:12px">
-            <span class="status-badge status-good"><i class="ri-checkbox-circle-line"></i> Recommended</span>
-            <span class="source-badge source-verified"><i class="ri-shield-check-line"></i> Verified</span>
-          </div>
-          <h3>Snapdragon 8 Gen 2 Phones</h3>
-          <div class="meta">
-            <span>SD 8 Gen 2</span>
-            <span>Adreno 740</span>
-          </div>
-          <p>Widely available and well-tested. Great balance of performance, price, and community knowledge.</p>
-          <a href="/devices/snapdragon-8-gen-2/">Read full report <i class="ri-arrow-right-line"></i></a>
-        </article>
+    function applyFilters() {
+      const status = statusFilter.value;
+      const gpu = gpuFilter.value;
+      grid.querySelectorAll('.device-card').forEach(card => {
+        const cardStatus = card.dataset.status;
+        const cardGpu = card.dataset.gpu;
+        const statusMatch = status === 'all' || cardStatus === status || (status === 'limited' && (cardStatus === 'limited' || cardStatus === 'not-recommended'));
+        const gpuMatch = gpu === 'all' || cardGpu === gpu;
+        card.style.display = statusMatch && gpuMatch ? '' : 'none';
+      });
+    }
 
-        <article class="card">
-          <i class="ri-gamepad-line" aria-hidden="true"></i>
-          <div class="meta" style="margin-bottom:12px">
-            <span class="status-badge status-good"><i class="ri-checkbox-circle-line"></i> Highly Recommended</span>
-            <span class="source-badge source-community"><i class="ri-user-community-line"></i> Community</span>
-          </div>
-          <h3>Ayn Odin 2 Portal</h3>
-          <div class="meta">
-            <span>SD 8 Gen 3</span>
-            <span>Adreno 750</span>
-          </div>
-          <p>Large-screen Snapdragon 8 Gen 3 handheld with active cooling. The current benchmark for dedicated Android handhelds.</p>
-          <a href="/devices/odin-2-portal/">Read full report <i class="ri-arrow-right-line"></i></a>
-        </article>
-
-        <article class="card">
-          <i class="ri-smartphone-line" aria-hidden="true"></i>
-          <div class="meta" style="margin-bottom:12px">
-            <span class="status-badge status-good"><i class="ri-checkbox-circle-line"></i> Highly Recommended</span>
-            <span class="source-badge source-community"><i class="ri-user-community-line"></i> Community</span>
-          </div>
-          <h3>ROG Phone 9</h3>
-          <div class="meta">
-            <span>SD 8 Elite</span>
-            <span>Adreno 830</span>
-          </div>
-          <p>Fastest phone-class option with vapor-chamber cooling. Best paired with a clip-on controller or dock.</p>
-          <a href="/devices/rog-phone-9/">Read full report <i class="ri-arrow-right-line"></i></a>
-        </article>
-
-        <article class="card">
-          <i class="ri-smartphone-line" aria-hidden="true"></i>
-          <div class="meta" style="margin-bottom:12px">
-            <span class="status-badge status-good"><i class="ri-checkbox-circle-line"></i> Recommended</span>
-            <span class="source-badge source-verified"><i class="ri-shield-check-line"></i> Verified</span>
-          </div>
-          <h3>RedMagic 9 Pro</h3>
-          <div class="meta">
-            <span>SD 8 Gen 3</span>
-            <span>Adreno 750</span>
-          </div>
-          <p>Great-value gaming phone with a built-in turbofan and shoulder triggers. Strong sustained performance.</p>
-          <a href="/devices/redmagic-9-pro/">Read full report <i class="ri-arrow-right-line"></i></a>
-        </article>
-
-        <article class="card">
-          <i class="ri-gamepad-line" aria-hidden="true"></i>
-          <div class="meta" style="margin-bottom:12px">
-            <span class="status-badge status-mixed"><i class="ri-error-warning-line"></i> Mixed</span>
-            <span class="source-badge source-community"><i class="ri-user-community-line"></i> Community</span>
-          </div>
-          <h3>Retroid Pocket 4</h3>
-          <div class="meta">
-            <span>SD 865</span>
-            <span>Adreno 650</span>
-          </div>
-          <p>Budget handheld with the same SoC as Pocket 5 but only 4 GB RAM. Good for 2D indie games, limited for 3A.</p>
-          <a href="/devices/retroid-pocket-4/">Read full report <i class="ri-arrow-right-line"></i></a>
-        </article>
-
-        <article class="card">
-          <i class="ri-gamepad-line" aria-hidden="true"></i>
-          <div class="meta" style="margin-bottom:12px">
-            <span class="status-badge status-limited"><i class="ri-close-circle-line"></i> Not Recommended</span>
-            <span class="source-badge source-community"><i class="ri-user-community-line"></i> Community</span>
-          </div>
-          <h3>Retroid Pocket 4 Pro</h3>
-          <div class="meta">
-            <span>Dimensity 1100</span>
-            <span>Mali-G77</span>
-          </div>
-          <p>Uses MediaTek/Mali, which is not officially supported by DroidDeck. Most users cannot launch games reliably.</p>
-          <a href="/devices/retroid-pocket-4-pro/">Read full report <i class="ri-arrow-right-line"></i></a>
-        </article>
-      </div>
-    </section>
-  
-  
+    statusFilter.addEventListener('change', applyFilters);
+    gpuFilter.addEventListener('change', applyFilters);
+  </script>
 </Layout>

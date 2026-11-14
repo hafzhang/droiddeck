@@ -1,0 +1,85 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="トラブルシューティング — DroidDeck ガイド"
+  description="DroidDeck のよくあるエラーと問題の解決策。黒画面、クラッシュ、Steam ログイン失敗、容量不足、コントローラー認識しない、音声問題など。"
+  page="troubleshooting"
+  locale="ja"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .issue-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .issue-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;transition:transform .2s,border-color .2s}
+    .issue-card:hover{transform:translateY(-3px);border-color:#b8d7f0}
+    .issue-card i{font-size:28px;color:#168fd5;margin-bottom:14px;display:block}
+    .issue-card h3{font-size:17px;margin-bottom:8px}
+    .issue-card p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+    .issue-card a{font-size:13px;font-weight:700;color:#147cb9}
+    .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:#f0f7fc;color:#147cb9;margin-bottom:12px}
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> トラブルシューティング</div>
+      <h1>問題が発生しましたか？</h1>
+      <p>DroidDeck のよくあるエラーを症状別に整理し、原因と具体的な手順を解説します。</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="issue-grid">
+      <article class="issue-card">
+        <i class="ri-contrast-2-line" aria-hidden="true"></i>
+        <span class="tag">起動問題</span>
+        <h3>黒画面</h3>
+        <p>ゲームや Steam 起動後、画面が真っ暗だが音や反応はある。</p>
+        <a href="/troubleshooting/black-screen/">解決策を見る <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="issue-card">
+        <i class="ri-error-warning-line" aria-hidden="true"></i>
+        <span class="tag">クラッシュ</span>
+        <h3>ゲームがクラッシュする</h3>
+        <p>起動時やプレイ中にアプリが落ちる、ホームに戻る、エラーが表示される。</p>
+        <a href="/troubleshooting/game-crashes/">解決策を見る <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="issue-card">
+        <i class="ri-steam-line" aria-hidden="true"></i>
+        <span class="tag">ログイン</span>
+        <h3>Steam ログインできない</h3>
+        <p>Steam にログインできない、QR コードが表示されない、認証コードが通らない。</p>
+        <a href="/troubleshooting/steam-login-failed/">解決策を見る <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="issue-card">
+        <i class="ri-hard-drive-3-line" aria-hidden="true"></i>
+        <span class="tag">ストレージ</span>
+        <h3>容量不足</h3>
+        <p>ゲームのインストールに失敗する、コンテナが容量を圧迫する。</p>
+        <a href="/troubleshooting/disk-space-insufficient/">解決策を見る <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="issue-card">
+        <i class="ri-gamepad-line" aria-hidden="true"></i>
+        <span class="tag">周辺機器</span>
+        <h3>コントローラーが認識しない</h3>
+        <p>Bluetooth または USB コントローラーが DroidDeck 内で反応しない。</p>
+        <a href="/troubleshooting/controller-not-detected/">解決策を見る <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="issue-card">
+        <i class="ri-volume-mute-line" aria-hidden="true"></i>
+        <span class="tag">音声</span>
+        <h3>音声問題</h3>
+        <p>音が出ない、ノイズが入る、遅延する、音声と映像がずれる。</p>
+        <a href="/troubleshooting/audio-issues/">解決策を見る <i class="ri-arrow-right-line"></i></a>
+      </article>
+    </div>
+  </section>
+</Layout>

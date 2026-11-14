@@ -1,0 +1,17 @@
+{
+  "name": "Ayn Odin 2",
+  "slug": "ayn-odin-2",
+  "soc": "Snapdragon 8 Gen 2",
+  "gpu": "Adreno 740",
+  "ram": "8 / 12 GB",
+  "display": "6\" 1080p IPS",
+  "battery": "8000 mAh",
+  "cooling": "Active fan",
+  "status": "recommended",
+  "rating": 5,
+  "source": "verified",
+  "fsrSupport": true,
+  "testedVersion": "1.2.0",
+  "lastUpdated": "2026-11-14",
+  "summary": "One of the most reliable Android handhelds for DroidDeck. Large battery and active cooling let the Adreno 740 sustain performance longer than phones, and built-in controls work out of the box."
+}

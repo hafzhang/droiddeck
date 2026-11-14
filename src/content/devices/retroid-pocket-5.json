@@ -1,0 +1,17 @@
+{
+  "name": "Retroid Pocket 5",
+  "slug": "retroid-pocket-5",
+  "soc": "Snapdragon 865",
+  "gpu": "Adreno 650",
+  "ram": "8 GB",
+  "display": "5.46\" 1080p IPS",
+  "battery": "5000 mAh",
+  "cooling": "Passive + small fan",
+  "status": "mixed",
+  "rating": 2.5,
+  "source": "community",
+  "fsrSupport": true,
+  "testedVersion": "1.2.0",
+  "lastUpdated": "2026-11-14",
+  "summary": "Can run DroidDeck, but its Adreno 650 GPU is below the official recommended tier. Good results in 2D and older 3D games; modern AAA titles struggle even at low settings."
+}

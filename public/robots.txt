@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://droiddeck-guide.gg/sitemap-index.xml

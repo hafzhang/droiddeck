@@ -1,0 +1,17 @@
+{
+  "name": "Snapdragon 8 Gen 2 Phones",
+  "slug": "snapdragon-8-gen-2",
+  "soc": "Snapdragon 8 Gen 2",
+  "gpu": "Adreno 740",
+  "ram": "8–16 GB",
+  "display": "Varies by model",
+  "battery": "Varies by model",
+  "cooling": "Passive (phone)",
+  "status": "good",
+  "rating": 4,
+  "source": "verified",
+  "fsrSupport": true,
+  "testedVersion": "1.2.0",
+  "lastUpdated": "2026-11-14",
+  "summary": "The most cost-effective entry point for DroidDeck. Adreno 740 handles most compatible games well, and used devices are affordable. A clip-on controller or dock is needed for comfortable play."
+}

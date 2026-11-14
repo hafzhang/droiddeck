@@ -1,0 +1,112 @@
+---
+import { locales, localeNames, localizePath } from '../i18n/translations';
+import type { Locale } from '../i18n/translations';
+
+export interface Props {
+  locale: Locale;
+  currentPath: string;
+}
+
+const { locale, currentPath } = Astro.props;
+
+// Normalize current path: remove existing locale prefix
+let pathWithoutLocale = currentPath;
+for (const loc of locales) {
+  if (loc !== 'en' && currentPath.startsWith(`/${loc}/`)) {
+    pathWithoutLocale = currentPath.slice(`/${loc}`.length) || '/';
+    break;
+  }
+}
+---
+
+<div class="language-picker">
+  <button class="lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
+    <i class="ri-global-line" aria-hidden="true"></i>
+    <span>{localeNames[locale]}</span>
+    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+  </button>
+  <ul class="lang-menu" role="menu">
+    {locales.map(loc => (
+      <li role="none">
+        <a
+          href={localizePath(pathWithoutLocale, loc)}
+          data-locale={loc}
+          role="menuitem"
+          aria-current={loc === locale ? 'true' : undefined}
+          class={loc === locale ? 'active' : ''}
+        >
+          {localeNames[loc]}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .language-picker {
+    position: relative;
+  }
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid #405064;
+    color: #c6cfda;
+    padding: 7px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .lang-toggle:hover {
+    border-color: #637183;
+    color: white;
+  }
+  .lang-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    background: #0b1018;
+    border: 1px solid #ffffff20;
+    border-radius: 6px;
+    padding: 6px 0;
+    margin: 0;
+    list-style: none;
+    min-width: 120px;
+    z-index: 50;
+    box-shadow: 0 8px 24px #00000040;
+  }
+  .language-picker:focus-within .lang-menu,
+  .language-picker:hover .lang-menu {
+    display: block;
+  }
+  .lang-menu a {
+    display: block;
+    padding: 8px 16px;
+    color: #c6cfda;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .lang-menu a:hover,
+  .lang-menu a.active {
+    color: white;
+    background: #1a9fff20;
+  }
+</style>
+
+<script>
+  (function () {
+    try {
+      const picker = document.querySelector('.language-picker');
+      if (!picker) return;
+      picker.querySelectorAll('.lang-menu a[data-locale]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          try {
+            localStorage.setItem('dd-locale', link.dataset.locale || 'en');
+          } catch (e) {}
+        });
+      });
+    } catch (e) {}
+  })();
+</script>

@@ -1,0 +1,76 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { localizePath } from '../../../i18n/translations';
+const locale = 'ja';
+---
+
+<Layout
+  title="ゲーム互換性 — DroidDeck ガイド"
+  description="DroidDeck のゲーム互換性リスト：60 FPS インディーゲーム、遊べる 3A タイトル、非推奨タイトル、FSR 設定ガイド。"
+  page="games"
+  locale="ja"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .category-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+    .category-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:26px;transition:transform .2s,border-color .2s}
+    .category-card:hover{transform:translateY(-3px);border-color:#b8d7f0}
+    .category-card i{font-size:32px;color:#168fd5;display:block;margin-bottom:16px}
+    .category-card h3{font-size:18px;margin-bottom:8px}
+    .category-card p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+    .category-card a{font-size:13px;font-weight:700;color:#147cb9}
+    .badge{display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:12px}
+    .badge-green{background:#f0fdf4;color:#16a34a}
+    .badge-amber{background:#fffbeb;color:#d97706}
+    .badge-red{background:#fef2f2;color:#dc2626}
+    .badge-blue{background:#f0f7fc;color:#147cb9}
+    @media(max-width:760px){.category-grid{grid-template-columns:1fr}}
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> ゲーム互換性</div>
+      <h1>何が遊べる？</h1>
+      <p>コミュニティ検証済みの DroidDeck ゲーム互換性リスト。60 FPS インディーゲーム、遊べる 3A タイトル、避けるべき作品、FSR 設定ガイドをまとめています。</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="category-grid">
+      <article class="category-card">
+        <span class="badge badge-green">60 FPS クラブ</span>
+        <i class="ri-gamepad-line" aria-hidden="true"></i>
+        <h3>60 FPS インディーゲームリスト</h3>
+        <p>多くの Adreno 740 搭載機で 60 FPS が出る軽量なインディーゲーム。</p>
+        <a href={localizePath('/games/indie-60fps-list/', locale)}>リストを見る <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="category-card">
+        <span class="badge badge-amber">調整が必要</span>
+        <i class="ri-sword-line" aria-hidden="true"></i>
+        <h3>3A プレイ可能リスト</h3>
+        <p>ハイエンド端末で画質を下げ、FSR を有効にすれば遊べる重いタイトル。</p>
+        <a href={localizePath('/games/aaa-playable-list/', locale)}>リストを見る <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="category-card">
+        <span class="badge badge-red">現状避けるべき</span>
+        <i class="ri-close-circle-line" aria-hidden="true"></i>
+        <h3>非推奨リスト</h3>
+        <p>現在、クラッシュ、15 FPS 未満、重大なグラフィック問題が発生するタイトル。</p>
+        <a href={localizePath('/games/not-recommended-list/', locale)}>リストを見る <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="category-card">
+        <span class="badge badge-blue">設定ガイド</span>
+        <i class="ri-settings-3-line" aria-hidden="true"></i>
+        <h3>FSR 設定ガイド</h3>
+        <p>ゲームジャンルや端末性能別の FSR プリセット推奨、画質と性能のトレードオフ。</p>
+        <a href={localizePath('/games/fsr-settings-guide/', locale)}>ガイドを読む <i class="ri-arrow-right-line"></i></a>
+      </article>
+    </div>
+  </section>
+</Layout>

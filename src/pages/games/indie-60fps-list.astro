@@ -1,11 +1,28 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const games = await getCollection('games', g => g.data.category === 'indie-60fps');
+games.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const sourceLabel: Record<string, string> = {
+  verified: 'Verified',
+  community: 'Community',
+  testing: 'Testing',
+  untested: 'Untested'
+};
+
+function topFps(game: (typeof games)[number]['data']) {
+  const entry = game.compatibility.find(c => c.rating >= 4) || game.compatibility[0];
+  return entry ? entry.fps : 'Unknown';
+}
 ---
 
 <Layout
   title="Indie 60 FPS Games for DroidDeck — DroidDeck Guide"
   description="Indie games that run at 60 FPS on DroidDeck. Verified lightweight titles for Android handhelds and Snapdragon phones."
   page="games"
+  locale="en"
 >
   <style>
     .page-header{background:var(--night);color:white;padding:90px 0 50px}
@@ -20,105 +37,52 @@ import Layout from '../../layouts/Layout.astro';
     .note{font-size:12px;color:var(--muted)}
     .badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:#f0fdf4;color:#16a34a}
     .source-badge{font-size:11px;padding:3px 10px}
+    .source-verified{background:#f0fdf4;color:#16a34a}
+    .source-community{background:#fffbeb;color:#d97706}
+    .source-testing{background:#f0f7fc;color:#147cb9}
+    .source-untested{background:#f1f5f9;color:#64748b}
   </style>
-  
-    <section class="page-header">
-      <div class="wrap">
-        <div class="hero-label"><span></span> Game Compatibility</div>
-        <h1>Indie 60 FPS Club</h1>
-        <p>These lightweight indie games are verified to run at 60 FPS on Adreno 740 devices like Ayn Odin 2 and Snapdragon 8 Gen 2/3 phones.</p>
-      </div>
-    </section>
 
-    <section class="page-content wrap">
-      <div style="overflow-x:auto">
-        <table class="game-table">
-          <thead>
-            <tr>
-              <th>Game</th>
-              <th>Category</th>
-              <th>Performance</th>
-              <th>Recommended settings</th>
-              <th>Source</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Hades</strong></td>
-              <td>Action roguelike</td>
-              <td><span class="fps">60 FPS</span></td>
-              <td>1080p, High</td>
-              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
-            </tr>
-            <tr>
-              <td><strong>Hollow Knight</strong></td>
-              <td>Metroidvania</td>
-              <td><span class="fps">60 FPS</span></td>
-              <td>1080p, Max</td>
-              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
-            </tr>
-            <tr>
-              <td><strong>Celeste</strong></td>
-              <td>Platformer</td>
-              <td><span class="fps">60 FPS</span></td>
-              <td>1080p, Max</td>
-              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
-            </tr>
-            <tr>
-              <td><strong>Dead Cells</strong></td>
-              <td>Action roguelike</td>
-              <td><span class="fps">60 FPS</span></td>
-              <td>1080p, High</td>
-              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
-            </tr>
-            <tr>
-              <td><strong>Stardew Valley</strong></td>
-              <td>Simulation / RPG</td>
-              <td><span class="fps">60 FPS</span></td>
-              <td>1080p, Max</td>
-              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
-            </tr>
-            <tr>
-              <td><strong>Shovel Knight</strong></td>
-              <td>Retro platformer</td>
-              <td><span class="fps">60 FPS</span></td>
-              <td>1080p, Max</td>
-              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
-            </tr>
-            <tr>
-              <td><strong>Hades II</strong></td>
-              <td>Action roguelike</td>
-              <td><span class="fps">50–60 FPS</span></td>
-              <td>720p–1080p, Medium</td>
-              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
-            </tr>
-            <tr>
-              <td><strong>Ori and the Will of the Wisps</strong></td>
-              <td>Platformer</td>
-              <td><span class="fps">60 FPS</span></td>
-              <td>720p, High</td>
-              <td><span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span></td>
-            </tr>
-            <tr>
-              <td><strong>Slay the Spire</strong></td>
-              <td>Card roguelike</td>
-              <td><span class="fps">60 FPS</span></td>
-              <td>1080p, Max</td>
-              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
-            </tr>
-            <tr>
-              <td><strong>Enter the Gungeon</strong></td>
-              <td>Bullet hell</td>
-              <td><span class="fps">60 FPS</span></td>
-              <td>1080p, Max</td>
-              <td><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> Game Compatibility</div>
+      <h1>Indie 60 FPS Club</h1>
+      <p>These lightweight indie games are verified to run at 60 FPS on Adreno 740 devices like Ayn Odin 2 and Snapdragon 8 Gen 2/3 phones.</p>
+    </div>
+  </section>
 
-      <p class="note" style="margin-top:20px"><span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span> entries were tested by our team on Adreno 740 devices. <span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span> entries come from user reports. Results may vary with DroidDeck updates and game patches.</p>
-    </section>
-  
-  
+  <section class="page-content wrap">
+    <div style="overflow-x:auto">
+      <table class="game-table">
+        <thead>
+          <tr>
+            <th>Game</th>
+            <th>Category</th>
+            <th>Performance</th>
+            <th>Recommended settings</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          {games.map(g => (
+            <tr>
+              <td><strong>{g.data.title}</strong></td>
+              <td>{g.data.genre}</td>
+              <td><span class="fps">{topFps(g.data)}</span></td>
+              <td>{g.data.recommendedSettings}</td>
+              <td>
+                <span class={`source-badge source-${g.data.source}`}>
+                  <i class={g.data.source === 'verified' ? 'ri-shield-check-line' : 'ri-user-community-line'} aria-hidden="true"></i> {sourceLabel[g.data.source]}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note" style="margin-top:20px">
+      <span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> Verified</span> entries were tested by our team on Adreno 740 devices. <span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> Community</span> entries come from user reports. Results may vary with DroidDeck updates and game patches.
+    </p>
+  </section>
 </Layout>

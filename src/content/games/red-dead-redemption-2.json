@@ -1,0 +1,23 @@
+{
+  "title": "Red Dead Redemption 2",
+  "slug": "red-dead-redemption-2",
+  "genre": "Open-world action",
+  "category": "aaa-playable",
+  "rating": 3,
+  "source": "community",
+  "recommendedSettings": "720p Low + FSR Performance",
+  "performanceNotes": "Very heavy open-world game. Playable on the best devices but stays below 30 FPS in demanding areas.",
+  "compatibility": [
+    { "device": "ayn-odin-2", "rating": 3, "fps": "20–28 FPS", "settings": "720p Low + FSR" },
+    { "device": "ayaneo-pocket-s", "rating": 3, "fps": "20–28 FPS", "settings": "720p Low + FSR" },
+    { "device": "odin-2-portal", "rating": 4, "fps": "25–35 FPS", "settings": "720p Low + FSR" },
+    { "device": "redmagic-9-pro", "rating": 3, "fps": "20–30 FPS", "settings": "720p Low + FSR" },
+    { "device": "rog-phone-9", "rating": 4, "fps": "25–35 FPS", "settings": "720p Low + FSR" },
+    { "device": "snapdragon-8-gen-3", "rating": 3, "fps": "20–30 FPS", "settings": "720p Low + FSR" },
+    { "device": "snapdragon-8-gen-2", "rating": 3, "fps": "18–25 FPS", "settings": "720p Low + FSR" },
+    { "device": "retroid-pocket-5", "rating": 1, "fps": "Not playable", "settings": "—" },
+    { "device": "retroid-pocket-4", "rating": 1, "fps": "Not playable", "settings": "—" },
+    { "device": "retroid-pocket-4-pro", "rating": 1, "fps": "Crashes", "settings": "—" }
+  ],
+  "lastUpdated": "2026-11-14"
+}

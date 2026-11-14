@@ -1,11 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { localizePath } from '../../i18n/translations';
+const locale = 'en';
 ---
 
 <Layout
   title="Game Compatibility — DroidDeck Guide"
   description="DroidDeck game compatibility lists. Indie games that run at 60 FPS, playable AAA titles, games to avoid, and FSR settings."
   page="games"
+
+  locale="en"
 >
   <style>
     .page-header{background:var(--night);color:white;padding:90px 0 50px}
@@ -42,7 +46,7 @@ import Layout from '../../layouts/Layout.astro';
           <i class="ri-gamepad-line" aria-hidden="true"></i>
           <h3>Indie 60 FPS List</h3>
           <p>Lightweight indie games that run smoothly at 60 FPS on most Adreno 740 devices.</p>
-          <a href="/games/indie-60fps-list/">Browse list <i class="ri-arrow-right-line"></i></a>
+          <a href={localizePath('/games/indie-60fps-list/', locale)}>Browse list <i class="ri-arrow-right-line"></i></a>
         </article>
 
         <article class="category-card">
@@ -50,7 +54,7 @@ import Layout from '../../layouts/Layout.astro';
           <i class="ri-sword-line" aria-hidden="true"></i>
           <h3>AAA Playable List</h3>
           <p>Demanding games that can run on high-end devices with lowered settings and FSR.</p>
-          <a href="/games/aaa-playable-list/">Browse list <i class="ri-arrow-right-line"></i></a>
+          <a href={localizePath('/games/aaa-playable-list/', locale)}>Browse list <i class="ri-arrow-right-line"></i></a>
         </article>
 
         <article class="category-card">
@@ -58,7 +62,7 @@ import Layout from '../../layouts/Layout.astro';
           <i class="ri-close-circle-line" aria-hidden="true"></i>
           <h3>Not Recommended List</h3>
           <p>Games that currently crash, run below 15 FPS, or have major graphical issues.</p>
-          <a href="/games/not-recommended-list/">Browse list <i class="ri-arrow-right-line"></i></a>
+          <a href={localizePath('/games/not-recommended-list/', locale)}>Browse list <i class="ri-arrow-right-line"></i></a>
         </article>
 
         <article class="category-card">
@@ -66,7 +70,7 @@ import Layout from '../../layouts/Layout.astro';
           <i class="ri-settings-3-line" aria-hidden="true"></i>
           <h3>FSR Settings Guide</h3>
           <p>Recommended FSR presets per game type and device tier, with visual vs performance trade-offs.</p>
-          <a href="/games/fsr-settings-guide/">Read guide <i class="ri-arrow-right-line"></i></a>
+          <a href={localizePath('/games/fsr-settings-guide/', locale)}>Read guide <i class="ri-arrow-right-line"></i></a>
         </article>
       </div>
     </section>

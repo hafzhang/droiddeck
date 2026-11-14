@@ -1,0 +1,17 @@
+{
+  "name": "ROG Phone 9",
+  "slug": "rog-phone-9",
+  "soc": "Snapdragon 8 Elite",
+  "gpu": "Adreno 830",
+  "ram": "16 / 24 GB LPDDR5X",
+  "display": "6.78\" 185 Hz AMOLED",
+  "battery": "5800 mAh",
+  "cooling": "Vapor chamber",
+  "status": "recommended",
+  "rating": 4.5,
+  "source": "community",
+  "fsrSupport": true,
+  "testedVersion": "1.2.0",
+  "lastUpdated": "2026-11-14",
+  "summary": "Currently the fastest phone for DroidDeck. Snapdragon 8 Elite's Adreno 830 is a big leap over Adreno 750, and vapor-chamber cooling keeps sustained performance high. Needs a clip-on controller or dock."
+}

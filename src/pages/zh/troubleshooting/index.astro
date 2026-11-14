@@ -1,0 +1,85 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="故障排除 — DroidDeck 指南"
+  description="DroidDeck 常见错误与问题的修复方案。黑屏、崩溃、Steam 登录失败、存储不足、手柄无法识别、音频问题等。"
+  page="troubleshooting"
+  locale="zh"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .issue-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .issue-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;transition:transform .2s,border-color .2s}
+    .issue-card:hover{transform:translateY(-3px);border-color:#b8d7f0}
+    .issue-card i{font-size:28px;color:#168fd5;margin-bottom:14px;display:block}
+    .issue-card h3{font-size:17px;margin-bottom:8px}
+    .issue-card p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+    .issue-card a{font-size:13px;font-weight:700;color:#147cb9}
+    .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:#f0f7fc;color:#147cb9;margin-bottom:12px}
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> 故障排除</div>
+      <h1>遇到问题了？</h1>
+      <p>DroidDeck 常见错误的分步修复方案。从症状到原因，再到具体操作。</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="issue-grid">
+      <article class="issue-card">
+        <i class="ri-contrast-2-line" aria-hidden="true"></i>
+        <span class="tag">启动问题</span>
+        <h3>黑屏</h3>
+        <p>游戏或 Steam 启动后屏幕全黑，但有声音或响应。</p>
+        <a href="/troubleshooting/black-screen/">查看修复 <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="issue-card">
+        <i class="ri-error-warning-line" aria-hidden="true"></i>
+        <span class="tag">崩溃</span>
+        <h3>游戏崩溃</h3>
+        <p>启动时或游玩中闪退、回到桌面、报错。</p>
+        <a href="/troubleshooting/game-crashes/">查看修复 <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="issue-card">
+        <i class="ri-steam-line" aria-hidden="true"></i>
+        <span class="tag">登录</span>
+        <h3>Steam 登录失败</h3>
+        <p>无法登录 Steam、二维码刷不出、验证码错误。</p>
+        <a href="/troubleshooting/steam-login-failed/">查看修复 <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="issue-card">
+        <i class="ri-hard-drive-3-line" aria-hidden="true"></i>
+        <span class="tag">存储</span>
+        <h3>存储空间不足</h3>
+        <p>游戏安装失败或容器空间被占满。</p>
+        <a href="/troubleshooting/disk-space-insufficient/">查看修复 <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="issue-card">
+        <i class="ri-gamepad-line" aria-hidden="true"></i>
+        <span class="tag">外设</span>
+        <h3>手柄无法识别</h3>
+        <p>蓝牙或 USB 手柄在 DroidDeck 中无响应。</p>
+        <a href="/troubleshooting/controller-not-detected/">查看修复 <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="issue-card">
+        <i class="ri-volume-mute-line" aria-hidden="true"></i>
+        <span class="tag">音频</span>
+        <h3>音频问题</h3>
+        <p>没有声音、爆音、延迟或音画不同步。</p>
+        <a href="/troubleshooting/audio-issues/">查看修复 <i class="ri-arrow-right-line"></i></a>
+      </article>
+    </div>
+  </section>
+</Layout>

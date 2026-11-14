@@ -1,0 +1,87 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const games = await getCollection('games', g => g.data.category === 'aaa-playable');
+games.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const sourceLabel: Record<string, string> = {
+  verified: '検証済み',
+  community: 'コミュニティ',
+  testing: 'テスト中',
+  untested: '未テスト'
+};
+
+function topFps(game: (typeof games)[number]['data']) {
+  const entry = game.compatibility.find(c => c.rating >= 3) || game.compatibility[0];
+  return entry ? entry.fps : '不明';
+}
+---
+
+<Layout
+  title="3A プレイ可能ゲームリスト — DroidDeck ガイド"
+  description="DroidDeck で低設定＋FSR で遊べる 3A ゲーム。Android 携帯ゲーム機の性能目安。"
+  page="games"
+  locale="ja"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:36px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .game-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+    .game-table th,.game-table td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .game-table th{background:#f4f7fa;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+    .game-table tr:last-child td{border-bottom:none}
+    .fps-mid{font-weight:700;color:#d97706}
+    .note{font-size:12px;color:var(--muted)}
+    .source-badge{font-size:11px;padding:3px 10px}
+    .source-verified{background:#f0fdf4;color:#16a34a}
+    .source-community{background:#fffbeb;color:#d97706}
+    .source-testing{background:#f0f7fc;color:#147cb9}
+    .source-untested{background:#f1f5f9;color:#64748b}
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> ゲーム互換性</div>
+      <h1>3A プレイ可能リスト</h1>
+      <p>ハイエンド DroidDeck 端末で低設定＋FSR を使えば遊べる重いタイトル。25–40 FPS を目安にしてください（60 FPS は期待しないでください）。</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div style="overflow-x:auto">
+      <table class="game-table">
+        <thead>
+          <tr>
+            <th>ゲーム</th>
+            <th>ジャンル</th>
+            <th>パフォーマンス</th>
+            <th>設定</th>
+            <th>情報源</th>
+          </tr>
+        </thead>
+        <tbody>
+          {games.map(g => (
+            <tr>
+              <td><strong>{g.data.title}</strong></td>
+              <td>{g.data.genre}</td>
+              <td><span class="fps-mid">{topFps(g.data)}</span></td>
+              <td>{g.data.recommendedSettings}</td>
+              <td>
+                <span class={`source-badge source-${g.data.source}`}>
+                  <i class={g.data.source === 'verified' ? 'ri-shield-check-line' : 'ri-user-community-line'} aria-hidden="true"></i> {sourceLabel[g.data.source]}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note" style="margin-top:20px">
+      <span class="source-badge source-verified"><i class="ri-shield-check-line" aria-hidden="true"></i> 検証済み</span> エントリは Ayn Odin 2 / Snapdragon 8 Gen 2 端末でテスト済みです。 <span class="source-badge source-community"><i class="ri-user-community-line" aria-hidden="true"></i> コミュニティ</span> エントリはユーザーレポートです。3A ゲームは 25–40 FPS を想定してください。
+    </p>
+  </section>
+</Layout>

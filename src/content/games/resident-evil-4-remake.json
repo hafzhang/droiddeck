@@ -1,0 +1,23 @@
+{
+  "title": "Resident Evil 4 (2023)",
+  "slug": "resident-evil-4-remake",
+  "genre": "Survival horror",
+  "category": "aaa-playable",
+  "rating": 4,
+  "source": "verified",
+  "recommendedSettings": "720p Medium + FSR Balanced",
+  "performanceNotes": "Excellent optimization for a modern AAA title. Runs at 30–45 FPS on Adreno 740/750 devices with medium settings.",
+  "compatibility": [
+    { "device": "ayn-odin-2", "rating": 4, "fps": "30–45 FPS", "settings": "720p Medium + FSR" },
+    { "device": "ayaneo-pocket-s", "rating": 4, "fps": "30–45 FPS", "settings": "720p Medium + FSR" },
+    { "device": "odin-2-portal", "rating": 5, "fps": "35–50 FPS", "settings": "720p High + FSR" },
+    { "device": "redmagic-9-pro", "rating": 4, "fps": "30–45 FPS", "settings": "720p Medium + FSR" },
+    { "device": "rog-phone-9", "rating": 5, "fps": "40–55 FPS", "settings": "720p High + FSR" },
+    { "device": "snapdragon-8-gen-3", "rating": 4, "fps": "30–45 FPS", "settings": "720p Medium + FSR" },
+    { "device": "snapdragon-8-gen-2", "rating": 4, "fps": "28–40 FPS", "settings": "720p Medium + FSR" },
+    { "device": "retroid-pocket-5", "rating": 2, "fps": "15–22 FPS", "settings": "720p Low" },
+    { "device": "retroid-pocket-4", "rating": 1, "fps": "Not playable", "settings": "—" },
+    { "device": "retroid-pocket-4-pro", "rating": 1, "fps": "Crashes", "settings": "—" }
+  ],
+  "lastUpdated": "2026-11-14"
+}

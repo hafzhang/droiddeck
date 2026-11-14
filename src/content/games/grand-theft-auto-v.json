@@ -1,0 +1,23 @@
+{
+  "title": "Grand Theft Auto V",
+  "slug": "grand-theft-auto-v",
+  "genre": "Open-world action",
+  "category": "aaa-playable",
+  "rating": 4,
+  "source": "verified",
+  "recommendedSettings": "720p Normal + FSR",
+  "performanceNotes": "Surprisingly well-optimized. Runs at 30–60 FPS on high-end devices with normal settings.",
+  "compatibility": [
+    { "device": "ayn-odin-2", "rating": 4, "fps": "45–60 FPS", "settings": "720p Normal" },
+    { "device": "ayaneo-pocket-s", "rating": 4, "fps": "45–60 FPS", "settings": "720p Normal" },
+    { "device": "odin-2-portal", "rating": 5, "fps": "45–60 FPS", "settings": "1080p Normal" },
+    { "device": "redmagic-9-pro", "rating": 4, "fps": "45–60 FPS", "settings": "720p Normal" },
+    { "device": "rog-phone-9", "rating": 5, "fps": "45–60 FPS", "settings": "1080p Normal" },
+    { "device": "snapdragon-8-gen-3", "rating": 4, "fps": "45–60 FPS", "settings": "720p Normal" },
+    { "device": "snapdragon-8-gen-2", "rating": 4, "fps": "40–55 FPS", "settings": "720p Normal" },
+    { "device": "retroid-pocket-5", "rating": 3, "fps": "25–35 FPS", "settings": "720p Low" },
+    { "device": "retroid-pocket-4", "rating": 2, "fps": "20–28 FPS", "settings": "540p Low" },
+    { "device": "retroid-pocket-4-pro", "rating": 1, "fps": "Crashes", "settings": "—" }
+  ],
+  "lastUpdated": "2026-11-14"
+}

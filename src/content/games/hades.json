@@ -1,0 +1,23 @@
+{
+  "title": "Hades",
+  "slug": "hades",
+  "genre": "Action roguelike",
+  "category": "indie-60fps",
+  "rating": 5,
+  "source": "verified",
+  "recommendedSettings": "1080p, High",
+  "performanceNotes": "Lightweight and well-optimized. Runs at 60 FPS on Adreno 740 and above at 1080p high settings.",
+  "compatibility": [
+    { "device": "ayn-odin-2", "rating": 5, "fps": "60 FPS", "settings": "1080p High" },
+    { "device": "ayaneo-pocket-s", "rating": 5, "fps": "60 FPS", "settings": "1080p High" },
+    { "device": "odin-2-portal", "rating": 5, "fps": "60 FPS", "settings": "1080p Max" },
+    { "device": "redmagic-9-pro", "rating": 5, "fps": "60 FPS", "settings": "1080p High" },
+    { "device": "rog-phone-9", "rating": 5, "fps": "60 FPS", "settings": "1080p Max" },
+    { "device": "snapdragon-8-gen-3", "rating": 5, "fps": "60 FPS", "settings": "1080p High" },
+    { "device": "snapdragon-8-gen-2", "rating": 5, "fps": "60 FPS", "settings": "1080p High" },
+    { "device": "retroid-pocket-5", "rating": 4, "fps": "60 FPS", "settings": "720p" },
+    { "device": "retroid-pocket-4", "rating": 3, "fps": "45–55 FPS", "settings": "720p Low" },
+    { "device": "retroid-pocket-4-pro", "rating": 1, "fps": "Crashes", "settings": "—" }
+  ],
+  "lastUpdated": "2026-11-14"
+}

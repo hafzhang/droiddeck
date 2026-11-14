@@ -1,0 +1,76 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { localizePath } from '../../../i18n/translations';
+const locale = 'zh';
+---
+
+<Layout
+  title="游戏兼容性 — DroidDeck 指南"
+  description="DroidDeck 游戏兼容性清单：60 FPS 独立游戏、可玩的 3A 大作、不推荐游戏，以及 FSR 设置指南。"
+  page="games"
+  locale="zh"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .category-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+    .category-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:26px;transition:transform .2s,border-color .2s}
+    .category-card:hover{transform:translateY(-3px);border-color:#b8d7f0}
+    .category-card i{font-size:32px;color:#168fd5;display:block;margin-bottom:16px}
+    .category-card h3{font-size:18px;margin-bottom:8px}
+    .category-card p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+    .category-card a{font-size:13px;font-weight:700;color:#147cb9}
+    .badge{display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:12px}
+    .badge-green{background:#f0fdf4;color:#16a34a}
+    .badge-amber{background:#fffbeb;color:#d97706}
+    .badge-red{background:#fef2f2;color:#dc2626}
+    .badge-blue{background:#f0f7fc;color:#147cb9}
+    @media(max-width:760px){.category-grid{grid-template-columns:1fr}}
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> 游戏兼容性</div>
+      <h1>你到底能玩什么？</h1>
+      <p>社区测试的 DroidDeck 游戏兼容性清单。找到 60 FPS 的独立游戏、可玩的 3A 大作、需要避开的作品，以及推荐 FSR 设置。</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="category-grid">
+      <article class="category-card">
+        <span class="badge badge-green">60 FPS 俱乐部</span>
+        <i class="ri-gamepad-line" aria-hidden="true"></i>
+        <h3>独立游戏 60 FPS 清单</h3>
+        <p>在大多数 Adreno 740 设备上流畅 60 FPS 运行的轻量独立游戏。</p>
+        <a href={localizePath('/games/indie-60fps-list/', locale)}>浏览清单 <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="category-card">
+        <span class="badge badge-amber">需要微调</span>
+        <i class="ri-sword-line" aria-hidden="true"></i>
+        <h3>3A 可玩清单</h3>
+        <p>在高端设备上降低画质并开启 FSR 后可以游玩的重负载游戏。</p>
+        <a href={localizePath('/games/aaa-playable-list/', locale)}>浏览清单 <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="category-card">
+        <span class="badge badge-red">暂时避开</span>
+        <i class="ri-close-circle-line" aria-hidden="true"></i>
+        <h3>不推荐清单</h3>
+        <p>当前会崩溃、低于 15 FPS 或有严重画面问题的游戏。</p>
+        <a href={localizePath('/games/not-recommended-list/', locale)}>浏览清单 <i class="ri-arrow-right-line"></i></a>
+      </article>
+
+      <article class="category-card">
+        <span class="badge badge-blue">设置指南</span>
+        <i class="ri-settings-3-line" aria-hidden="true"></i>
+        <h3>FSR 设置指南</h3>
+        <p>按游戏类型与设备层级推荐的 FSR 预设，以及画质与性能权衡。</p>
+        <a href={localizePath('/games/fsr-settings-guide/', locale)}>阅读指南 <i class="ri-arrow-right-line"></i></a>
+      </article>
+    </div>
+  </section>
+</Layout>

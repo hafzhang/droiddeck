@@ -1,0 +1,17 @@
+{
+  "name": "RedMagic 9 Pro",
+  "slug": "redmagic-9-pro",
+  "soc": "Snapdragon 8 Gen 3",
+  "gpu": "Adreno 750",
+  "ram": "12 / 16 GB LPDDR5X",
+  "display": "6.8\" 120 Hz AMOLED",
+  "battery": "6500 mAh",
+  "cooling": "Built-in turbofan",
+  "status": "recommended",
+  "rating": 4,
+  "source": "verified",
+  "fsrSupport": true,
+  "testedVersion": "1.2.0",
+  "lastUpdated": "2026-11-14",
+  "summary": "One of the best-value phones for DroidDeck. Snapdragon 8 Gen 3 and Adreno 750 handle the same games as other flagships, while the built-in turbofan and shoulder triggers make it more handheld-friendly."
+}

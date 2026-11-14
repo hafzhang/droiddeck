@@ -1,0 +1,78 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="バージョン更新 — DroidDeck ガイド"
+  description="DroidDeck のバージョン更新履歴とコミュニティで確認されている既知の問題。新機能、修正項目、残存バグを更新前に確認できます。"
+  page="updates"
+  locale="ja"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .timeline{position:relative;padding-left:24px;border-left:2px solid var(--line)}
+    .timeline-item{position:relative;margin-bottom:32px}
+    .timeline-item:before{content:"";position:absolute;left:-31px;top:6px;width:12px;height:12px;background:var(--blue);border-radius:50%}
+    .timeline-header{display:flex;gap:12px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+    .timeline-header h2{font-size:20px;margin:0}
+    .timeline-header span{font-size:12px;color:var(--muted);background:#f4f7fa;padding:4px 10px;border-radius:999px}
+    .timeline-item p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:12px}
+    .timeline-item ul{font-size:14px;color:var(--muted);line-height:1.9;padding-left:20px}
+    .timeline-item li{margin-bottom:6px}
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> バージョン更新</div>
+      <h1>DroidDeck 更新ログ</h1>
+      <p>翻訳した更新ノートとコミュニティで確認されている既知の問題。何が変わり、どのバグが残っているか更新前にチェックできます。</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="timeline">
+      <article class="timeline-item">
+        <div class="timeline-header">
+          <h2>DroidDeck 1.2.0</h2>
+          <span>2026-10-28</span>
+        </div>
+        <p>Adreno 750/830 のレンダリングパスを最適化し、Steam ビッグピクチャーモードの安定性を向上。</p>
+        <ul>
+          <li>Snapdragon 8 Elite（Adreno 830）への初期対応を追加</li>
+          <li>低解像度時の FSR 3 フレーム生成を最適化</li>
+          <li>一部端末でスリープ復帰後にコントローラーが失われる問題を修正</li>
+          <li>Steam ログインフローの QR コード描画を改善</li>
+        </ul>
+      </article>
+
+      <article class="timeline-item">
+        <div class="timeline-header">
+          <h2>DroidDeck 1.1.5</h2>
+          <span>2026-09-15</span>
+        </div>
+        <p>bug 修正リリース。ストレージと音声の問題に重点を置いています。</p>
+        <ul>
+          <li>一部端末でコンテナが二重のストレージを消費する問題を修正</li>
+          <li>一部 Bluetooth イヤホンの音声遅延を修正</li>
+          <li>初回起動時のサブプロセス上限ヒントを改善</li>
+        </ul>
+      </article>
+
+      <article class="timeline-item">
+        <div class="timeline-header">
+          <h2>DroidDeck 1.1.0</h2>
+          <span>2026-08-03</span>
+        </div>
+        <p>FSR 対応を初めて追加し、新しいゲーム管理 UI を導入。</p>
+        <ul>
+          <li>FSR 1/2/3 の画質・性能プリセットを追加</li>
+          <li>カバーとカテゴリに対応したゲーム管理 UI を刷新</li>
+          <li>より多くの XInput コントローラー認識を追加</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</Layout>

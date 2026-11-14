@@ -1,0 +1,78 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="版本更新 — DroidDeck 指南"
+  description="DroidDeck 版本更新说明与社区问题汇总。了解每个版本的新功能、修复项与已知问题。"
+  page="updates"
+  locale="zh"
+>
+  <style>
+    .page-header{background:var(--night);color:white;padding:90px 0 50px}
+    .page-header h1{font-size:42px;margin-bottom:12px}
+    .page-header p{color:#93a7ba;max-width:600px}
+    .page-content{padding:50px 0 80px}
+    .timeline{position:relative;padding-left:24px;border-left:2px solid var(--line)}
+    .timeline-item{position:relative;margin-bottom:32px}
+    .timeline-item:before{content:"";position:absolute;left:-31px;top:6px;width:12px;height:12px;background:var(--blue);border-radius:50%}
+    .timeline-header{display:flex;gap:12px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+    .timeline-header h2{font-size:20px;margin:0}
+    .timeline-header span{font-size:12px;color:var(--muted);background:#f4f7fa;padding:4px 10px;border-radius:999px}
+    .timeline-item p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:12px}
+    .timeline-item ul{font-size:14px;color:var(--muted);line-height:1.9;padding-left:20px}
+    .timeline-item li{margin-bottom:6px}
+  </style>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="hero-label"><span></span> 版本更新</div>
+      <h1>DroidDeck 更新日志</h1>
+      <p>翻译后的更新说明与社区已知问题汇总。在更新前了解哪些内容变了、哪些 bug 还在。</p>
+    </div>
+  </section>
+
+  <section class="page-content wrap">
+    <div class="timeline">
+      <article class="timeline-item">
+        <div class="timeline-header">
+          <h2>DroidDeck 1.2.0</h2>
+          <span>2026-10-28</span>
+        </div>
+        <p>主要优化 Adreno 750/830 的渲染路径，并改进了 Steam 大屏幕模式的稳定性。</p>
+        <ul>
+          <li>新增对骁龙 8 Elite（Adreno 830）的初步支持</li>
+          <li>优化 FSR 3 帧生成在低分辨率下的表现</li>
+          <li>修复部分设备睡眠恢复后手柄丢失的问题</li>
+          <li>改进 Steam 登录流程的二维码渲染</li>
+        </ul>
+      </article>
+
+      <article class="timeline-item">
+        <div class="timeline-header">
+          <h2>DroidDeck 1.1.5</h2>
+          <span>2026-09-15</span>
+        </div>
+        <p>bug 修复版本，重点解决存储与音频相关的问题。</p>
+        <ul>
+          <li>修复容器在某些设备上占用双倍存储空间的问题</li>
+          <li>修复部分蓝牙耳机的音频延迟</li>
+          <li>改进首次启动时的子进程上限提示</li>
+        </ul>
+      </article>
+
+      <article class="timeline-item">
+        <div class="timeline-header">
+          <h2>DroidDeck 1.1.0</h2>
+          <span>2026-08-03</span>
+        </div>
+        <p>首次加入 FSR 支持，并带来新版游戏管理界面。</p>
+        <ul>
+          <li>新增 FSR 1/2/3 画质与性能预设</li>
+          <li>重构游戏管理界面，支持封面与分类</li>
+          <li>新增对更多 XInput 手柄的识别</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</Layout>

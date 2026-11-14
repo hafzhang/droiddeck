@@ -1,23 +1,37 @@
 ---
+import { t, localizePath } from '../i18n/translations';
+import type { Locale } from '../i18n/translations';
+import LanguagePicker from '../components/LanguagePicker.astro';
+
 export interface Props {
   title: string;
   description?: string;
   ogImage?: string;
   page?: string;
+  locale?: Locale;
 }
 
 const {
   title,
-  description = "Independent DroidDeck troubleshooting & compatibility database.",
+  description = t('en', 'footer.tagline'),
   ogImage = "/assets/images/hero-screen.webp",
-  page = ""
+  page = "",
+  locale = "en"
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site || "https://droiddeck-guide.gg").toString();
+const siteUrl = (Astro.site || new URL("https://droiddeck-guide.gg")).toString().replace(/\/$/, '');
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+const basePath = Astro.url.pathname.replace(/^\/(zh|ja)\//, '/');
+const alternates = (['en', 'zh', 'ja'] as Locale[]).map(loc => ({
+  locale: loc,
+  href: new URL(localizePath(basePath, loc), siteUrl).toString()
+}));
+const ogLocale = locale === 'zh' ? 'zh_CN' : locale === 'ja' ? 'ja_JP' : 'en_US';
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +39,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site || "https://droiddeck-g
   <meta name="description" content={description}>
   <meta name="theme-color" content="#0b1018">
   <link rel="canonical" href={canonical}>
+  {alternates.map(alt => (
+    <link rel="alternate" hreflang={alt.locale} href={alt.href} />
+  ))}
+  <link rel="alternate" hreflang="x-default" href={alternates.find(a => a.locale === 'en')?.href} />
   <link rel="icon" href="/assets/images/favicon.ico">
   <link href="https://cdn.bootcdn.net/ajax/libs/remixicon/4.2.0/remixicon.css" rel="stylesheet">
   <link href="/assets/css/style.css" rel="stylesheet">
@@ -33,12 +51,26 @@ const canonical = new URL(Astro.url.pathname, Astro.site || "https://droiddeck-g
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
   <meta property="og:url" content={canonical}>
-  <meta property="og:image" content={ogImage}>
+  <meta property="og:image" content={ogImageUrl}>
+  <meta property="og:locale" content={ogLocale}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: title,
+    url: canonical,
+    description: description,
+    inLanguage: ogLocale,
+    publisher: {
+      '@type': 'Organization',
+      name: 'DroidDeck Guide',
+      url: 'https://droiddeck-guide.gg'
+    }
+  })} />
 </head>
 <body>
   <header class="site-header">
     <div class="nav-inner">
-      <a class="brand" href="/" aria-label="DroidDeck Guide home">
+      <a class="brand" href={localizePath('/', locale)} aria-label="DroidDeck Guide home">
         <img src="/assets/images/logo.png" alt="DroidDeck" width="36" height="36">
         <span>DroidDeck</span>
         <small>Guide</small>
@@ -47,17 +79,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site || "https://droiddeck-g
         <i class="ri-menu-line" aria-hidden="true"></i>
       </button>
       <nav id="site-nav" aria-label="Main navigation">
-        <a href="/" aria-current={page === "home" ? "page" : undefined}>Home</a>
-        <a href="/devices/" aria-current={page === "devices" ? "page" : undefined}>Devices</a>
-        <a href="/troubleshooting/" aria-current={page === "troubleshooting" ? "page" : undefined}>Troubleshooting</a>
-        <a href="/games/" aria-current={page === "games" ? "page" : undefined}>Games</a>
-        <a href="/compare/" aria-current={page === "compare" ? "page" : undefined}>Compare</a>
-        <a href="/updates/" aria-current={page === "updates" ? "page" : undefined}>Updates</a>
-        <a href="/#faq">FAQ</a>
+        <a href={localizePath('/', locale)} aria-current={page === "home" ? "page" : undefined}>{t(locale, 'nav.home')}</a>
+        <a href={localizePath('/devices/', locale)} aria-current={page === "devices" ? "page" : undefined}>{t(locale, 'nav.devices')}</a>
+        <a href={localizePath('/troubleshooting/', locale)} aria-current={page === "troubleshooting" ? "page" : undefined}>{t(locale, 'nav.troubleshooting')}</a>
+        <a href={localizePath('/games/', locale)} aria-current={page === "games" ? "page" : undefined}>{t(locale, 'nav.games')}</a>
+        <a href={localizePath('/compatibility-matrix/', locale)} aria-current={page === "matrix" ? "page" : undefined}>{t(locale, 'nav.matrix')}</a>
+        <a href={localizePath('/compare/', locale)} aria-current={page === "compare" ? "page" : undefined}>{t(locale, 'nav.compare')}</a>
+        <a href={localizePath('/updates/', locale)} aria-current={page === "updates" ? "page" : undefined}>{t(locale, 'nav.updates')}</a>
+        <a href={localizePath('/#faq', locale)}>{t(locale, 'nav.faq')}</a>
       </nav>
-      <a class="nav-download" href="https://droiddeck.app/" target="_blank" rel="nofollow noopener noreferrer">
-        <i class="ri-download-2-line" aria-hidden="true"></i> Get DroidDeck
-      </a>
+      <div style="display:flex;align-items:center;gap:12px;margin-left:auto">
+        <a href={localizePath('/search/', locale)} class="nav-search" aria-label={t(locale, 'search.label')}>
+          <i class="ri-search-line" aria-hidden="true"></i>
+        </a>
+        <LanguagePicker locale={locale} currentPath={Astro.url.pathname} />
+        <a class="nav-download" href="https://droiddeck.app/" target="_blank" rel="nofollow noopener noreferrer">
+          <i class="ri-download-2-line" aria-hidden="true"></i> {t(locale, 'nav.getDroidDeck')}
+        </a>
+      </div>
     </div>
   </header>
 
@@ -68,24 +107,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site || "https://droiddeck-g
   <footer class="site-footer">
     <div class="wrap footer-top">
       <div>
-        <a class="brand" href="/">
+        <a class="brand" href={localizePath('/', locale)}>
           <img src="/assets/images/logo.png" alt="DroidDeck" width="32" height="32">
           <span>DroidDeck</span>
           <small>Guide</small>
         </a>
-        <p>Independent troubleshooting &amp; compatibility database for DroidDeck.</p>
+        <p>{t(locale, 'footer.tagline')}</p>
       </div>
       <div class="footer-links">
-        <a href="/devices/">Devices</a>
-        <a href="/troubleshooting/">Troubleshooting</a>
-        <a href="/compare/">Compare</a>
-        <a href="/submit-report/">Submit Report</a>
+        <a href={localizePath('/devices/', locale)}>{t(locale, 'nav.devices')}</a>
+        <a href={localizePath('/troubleshooting/', locale)}>{t(locale, 'nav.troubleshooting')}</a>
+        <a href={localizePath('/compare/', locale)}>{t(locale, 'nav.compare')}</a>
+        <a href={localizePath('/submit-report/', locale)}>{t(locale, 'nav.submitReport')}</a>
         <a href="https://github.com/Droid-Deck/DroidDeck" target="_blank" rel="noopener noreferrer">GitHub <i class="ri-external-link-line" aria-hidden="true"></i></a>
       </div>
     </div>
     <div class="wrap footer-bottom">
-      <span>© 2026 DroidDeck Guide</span>
-      <p>DroidDeck Guide is an independent community site and is not affiliated with the DroidDeck development team or Valve.</p>
+      <span>{t(locale, 'footer.copyright')}</span>
+      <p>{t(locale, 'footer.disclaimer')}</p>
     </div>
   </footer>
 

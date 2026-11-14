@@ -1,0 +1,23 @@
+{
+  "title": "Hogwarts Legacy",
+  "slug": "hogwarts-legacy",
+  "genre": "Action RPG",
+  "category": "not-recommended",
+  "rating": 1,
+  "source": "community",
+  "recommendedSettings": "Not applicable",
+  "performanceNotes": "DX12 unsupported or unstable on current DroidDeck builds. Crashes on launch for most users.",
+  "compatibility": [
+    { "device": "ayn-odin-2", "rating": 1, "fps": "Crashes on launch", "settings": "—" },
+    { "device": "ayaneo-pocket-s", "rating": 1, "fps": "Crashes on launch", "settings": "—" },
+    { "device": "odin-2-portal", "rating": 1, "fps": "Crashes on launch", "settings": "—" },
+    { "device": "redmagic-9-pro", "rating": 1, "fps": "Crashes on launch", "settings": "—" },
+    { "device": "rog-phone-9", "rating": 1, "fps": "Crashes on launch", "settings": "—" },
+    { "device": "snapdragon-8-gen-3", "rating": 1, "fps": "Crashes on launch", "settings": "—" },
+    { "device": "snapdragon-8-gen-2", "rating": 1, "fps": "Crashes on launch", "settings": "—" },
+    { "device": "retroid-pocket-5", "rating": 1, "fps": "Crashes", "settings": "—" },
+    { "device": "retroid-pocket-4", "rating": 1, "fps": "Crashes", "settings": "—" },
+    { "device": "retroid-pocket-4-pro", "rating": 1, "fps": "Crashes", "settings": "—" }
+  ],
+  "lastUpdated": "2026-11-14"
+}
